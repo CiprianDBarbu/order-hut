@@ -1,0 +1,10 @@
+<div class="container">
+    <h2>Clients listing</h2>
+    <ul *ngFor="let client of clientsList">
+        <li> {{ client.clientId }} </li>
+        <li> {{ client.name }} </li>
+        <li> {{ client.orderId }} </li>
+        <li> {{ client.orderTotalPrice }} </li>
+        <li> {{ client.tableId }} </li>
+    </ul>
+</div>
