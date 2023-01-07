@@ -1,1 +1,48 @@
-<p>dish works!</p>
+<div class="container">
+    <h2>Dish listing</h2>
+
+    <div class="listing-container">
+        <p-table [value]="dishList">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="dishId">Dish Id<p-sortIcon field="dishId"></p-sortIcon></th>
+                    <th pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon></th>
+                    <th pSortableColumn="price">Price<p-sortIcon field="price"></p-sortIcon></th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-dish>
+                <tr>
+                    <td> {{ dish.dishId }} </td>
+                    <td> {{ dish.name }} </td>
+                    <td> {{ dish.price }} lei </td>
+                    <td> {{ dish.description }} </td>
+                    <td *ngIf="isAdmin" class="text-right">
+                        <div class="p-buttonset">
+                            <button pButton type="submit"
+                                    [routerLink]="['/dish', dish.dishId, 'view']"
+                                    icon="pi pi-eye"
+                                    class="p-button-sm"
+                                    label="View">
+                            </button>
+        
+                            <button pButton type="submit"
+                                    [routerLink]="['/dish', dish.dishId, 'edit']"
+                                    icon="pi pi-pencil"
+                                    class="p-button-warning p-button-sm"
+                                    label="Edit">
+                            </button>
+        
+                            <button pButton type="submit" (click)="delete(dish)"
+                                    icon="pi pi-trash"
+                                    class="p-button-danger p-button-sm"
+                                    label="Delete">
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

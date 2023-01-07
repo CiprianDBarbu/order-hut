@@ -5,6 +5,5 @@ export class Table {
     tableId?: number;
     clientId?: number;
     waiterId?: number;
-    ordersList?: Order[];
-    finalPrice?: number;
+    orderId?: number;
 }

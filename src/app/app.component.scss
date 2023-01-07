@@ -1,0 +1,24 @@
+.header-container {
+    width: 100%;
+    background-color: #ede1ad;
+    height: 4rem;
+    padding: 0 0.5rem;
+
+    .header-routes {
+        display: flex;
+        gap: 0.5rem;
+        a {
+            text-decoration: none;
+            color: #454545;
+            background-color: #ffffff;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            
+            padding: 0.5rem;
+
+            &:hover {
+                box-shadow: 0px 10px 13px -7px #000000;
+            }
+        }
+    }
+}

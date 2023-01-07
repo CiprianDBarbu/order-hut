@@ -7,5 +7,5 @@ export class Order {
     totalPrice?: number;
     clientId?: number;
     tableId?: number;
-    orderTime?: Time;
+    orderTime?: Date;
 }

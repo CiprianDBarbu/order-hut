@@ -9,6 +9,9 @@ import { OrderComponent } from './order/order.component';
 import { TableComponent } from './table/table.component';
 import { WaiterComponent } from './waiter/waiter.component';
 
+import {TableModule} from 'primeng/table';
+import {ButtonModule} from 'primeng/button';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +23,9 @@ import { WaiterComponent } from './waiter/waiter.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    TableModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
