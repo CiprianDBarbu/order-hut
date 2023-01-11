@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Order } from '../models/order.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OrdereService {
+export class OrderService {
 
   constructor() { }
 
@@ -205,5 +206,9 @@ export class OrdereService {
         orderTime: new Date("2023-11-01 13:00:58")
       }
     ];
+  }
+
+  find(id: number): Order {
+    return new Order();
   }
 }

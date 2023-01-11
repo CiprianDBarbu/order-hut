@@ -1,0 +1,38 @@
+<div class="col-8">
+    <div *ngIf="dish">
+        <h2><span>Dish</span> {{ dish.dishId }}</h2>
+
+        <dl class="row-md jh-entity-details">
+            <dt><span>Dish Id</span></dt>
+            <dd>
+                <span>{{ dish.dishId }}</span>
+            </dd>
+            <dt><span>Name</span></dt>
+            <dd>
+                <span>{{ dish.name }}</span>
+            </dd>
+            <dt><span>Price</span></dt>
+            <dd>
+                <span>{{ dish.price }}</span>
+            </dd>
+            <dt><span>Description</span></dt>
+            <dd>
+                <span>{{ dish.description }}</span>
+            </dd>
+        </dl>
+
+        <button pButton type="submit"
+                (click)="back()"
+                label="Back"
+                icon="pi pi-arrow-left"
+                class="btn btn-info">
+        </button>
+
+        <button pButton type="button"
+                [routerLink]="['/dish', dish.dishId, 'edit']"
+                label="Edit"
+                icon="pi pi-pencil"
+                class="btn btn-primary">
+        </button>
+    </div>
+</div>

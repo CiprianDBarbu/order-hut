@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Client } from '../models/client.model';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +46,10 @@ export class ClientService {
         tableId: 0,
       },
     ];
+  }
+
+  find(id: number): Client {
+    //this will get a Client based by Id
+    return new Client();
   }
 }

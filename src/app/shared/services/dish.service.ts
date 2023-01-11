@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Dish } from '../models/dish.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,9 @@ export class DishService {
         description: "egestas a, dui. Cras pellentesque."
       }
     ];
+  }
+
+  find(id: number): Dish {
+    return new Dish();
   }
 }

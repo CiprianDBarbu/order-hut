@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Table } from '../models/table.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,9 @@ export class TableService {
         orderId: 7
       }
     ];
+  }
+
+  find(id: number): Table {
+    return new Table();
   }
 }

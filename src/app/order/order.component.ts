@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Order } from '../shared/models/order.model';
-import { OrdereService } from '../shared/services/order.service';
+import { OrderService } from '../shared/services/order.service';
 
 @Component({
   selector: 'app-order',
@@ -11,7 +11,7 @@ export class OrderComponent implements OnInit {
   ordersList!: Order[];
   isAdmin?: boolean = true;
 
-  constructor(private orderService: OrdereService) { }
+  constructor(private orderService: OrderService) { }
 
   ngOnInit(): void {
     this.ordersList = this.orderService.getOrdersList();

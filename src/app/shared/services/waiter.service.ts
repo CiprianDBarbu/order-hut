@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Waiter } from '../models/waiter.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +36,9 @@ export class WaiterService {
         tablesListIds: [8, 9, 10]
       }
     ];
+  }
+
+  find(id: number): Waiter {
+    return new Waiter();
   }
 }

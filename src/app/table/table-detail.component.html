@@ -1,0 +1,38 @@
+<div class="col-8">
+    <div *ngIf="table">
+        <h2><span>Table</span> {{ table.tableId }}</h2>
+
+        <dl class="row-md jh-entity-details">
+            <dt><span><Table></Table> Id</span></dt>
+            <dd>
+                <span>{{ table.tableId }}</span>
+            </dd>
+            <dt><span>Client Id</span></dt>
+            <dd>
+                <span>{{ table.clientId }}</span>
+            </dd>
+            <dt><span>Waiter Id</span></dt>
+            <dd>
+                <span>{{ table.waiterId }}</span>
+            </dd>
+            <dt><span>Order Id</span></dt>
+            <dd>
+                <span>{{ table.orderId }}</span>
+            </dd>
+        </dl>
+
+        <button pButton type="submit"
+                (click)="back()"
+                label="Back"
+                icon="pi pi-arrow-left"
+                class="btn btn-info">
+        </button>
+
+        <button pButton type="button"
+                [routerLink]="['/table', table.tableId, 'edit']"
+                label="Edit"
+                icon="pi pi-pencil"
+                class="btn btn-primary">
+        </button>
+    </div>
+</div>
