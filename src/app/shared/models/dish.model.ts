@@ -1,6 +1,8 @@
 export class Dish {
     dishId?: number;
-    name?: string;
+    dishName?: string;
     price?: number;
-    description?: string;
+    category?: string;
+    imageUrl?: string;
+    dishDescription?: string;
 }
