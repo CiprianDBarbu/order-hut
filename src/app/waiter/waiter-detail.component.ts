@@ -16,7 +16,7 @@ export class WaiterDetailComponent implements OnInit {
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['waiterId'];
 
-    this.waiter = this.waiterService.find(id);
+    this.waiterService.find(id).subscribe((res) => this.waiter = res);
   }
 
   back() {
