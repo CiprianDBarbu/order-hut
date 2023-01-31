@@ -1,0 +1,34 @@
+<div class="col-8">
+    <div *ngIf="planification">
+        <h2><span>Planification</span> {{ planification.planificationId }}</h2>
+
+        <dl class="row-md jh-entity-details">
+            <dt><span>Planification Id</span></dt>
+            <dd>
+                <span>{{ planification.planificationId }}</span>
+            </dd>
+            <dt><span>Name</span></dt>
+            <dd>
+                <span>{{ planification.waiter.fullName }}</span>
+            </dd>
+            <dt><span>Table Id</span></dt>
+            <dd>
+                <span>{{ planification.actualTable.tableId }}</span>
+            </dd>
+        </dl>
+
+        <button pButton type="submit"
+                (click)="back()"
+                label="Back"
+                icon="pi pi-arrow-left"
+                class="btn btn-info">
+        </button>
+
+        <button pButton type="button"
+                [routerLink]="['/planification', planification.planificationId, 'edit']"
+                label="Edit"
+                icon="pi pi-pencil"
+                class="btn btn-primary">
+        </button>
+    </div>
+</div>

@@ -9,6 +9,9 @@ import { DishComponent } from './dish/dish.component';
 import { OrderDetailComponent } from './order/order-detail.component';
 import { OrderUpdateComponent } from './order/order-update.component';
 import { OrderComponent } from './order/order.component';
+import { PlanificationDetailComponent } from './planification/planification-detail.component';
+import { PlanificationUpdateComponent } from './planification/planification-update.component';
+import { PlanificationComponent } from './planification/planification.component';
 import { TableDetailComponent } from './table/table-detail.component';
 import { TableUpdateComponent } from './table/table-update.component';
 import { TableComponent } from './table/table.component';
@@ -32,6 +35,9 @@ const routes: Routes = [
   { path: 'waiter', component: WaiterComponent },
   { path: 'waiter/:waiterId/view', component: WaiterDetailComponent },
   { path: 'waiter/:waiterId/edit', component: WaiterUpdateComponent },
+  { path: 'planification', component: PlanificationComponent },
+  { path: 'planification/:planificationId/view', component: PlanificationDetailComponent },
+  { path: 'planification/:planificationId/edit', component: PlanificationUpdateComponent },
 ];
 
 

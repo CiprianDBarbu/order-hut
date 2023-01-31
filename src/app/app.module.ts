@@ -25,6 +25,9 @@ import { WaiterDetailComponent } from './waiter/waiter-detail.component';
 import { WaiterUpdateComponent } from './waiter/waiter-update.component';
 import { ConfirmationService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PlanificationComponent } from './planification/planification.component';
+import { PlanificationDetailComponent } from './planification/planification-detail.component';
+import { PlanificationUpdateComponent } from './planification/planification-update.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TableDetailComponent,
     TableUpdateComponent,
     WaiterDetailComponent,
-    WaiterUpdateComponent
+    WaiterUpdateComponent,
+    PlanificationComponent,
+    PlanificationDetailComponent,
+    PlanificationUpdateComponent
   ],
   imports: [
     BrowserModule,
