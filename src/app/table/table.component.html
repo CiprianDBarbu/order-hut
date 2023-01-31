@@ -2,22 +2,21 @@
     <h2>Table listing</h2>
 
     <div class="listing-container">
+        <p-confirmDialog [style]="{width: '50vw'}" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
         <p-table [value]="tablesList">
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="tableId">Table Id<p-sortIcon field="tableId"></p-sortIcon></th>
-                    <th>Waiter</th>
-                    <th>Client</th>
-                    <th>Order Id</th>
+                    <th>Serving Zone</th>
+                    <th>Number of Seats</th>
                     <th>Actions</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-table>
                 <tr>
                     <td> {{ table.tableId }} </td>
-                    <td> {{ table.waiterId }} </td>
-                    <td> {{ table.clientId }} </td>
-                    <td> {{ table.orderId }} </td>
+                    <td> Zone {{ table.servingZone }} </td>
+                    <td> {{ table.numberOfSeats }} people</td>
                     <td *ngIf="isAdmin" class="text-right">
                         <div class="p-buttonset">
                             <button pButton type="submit"

@@ -3,7 +3,6 @@ import { Order } from "./order.model";
 
 export class Table {
     tableId?: number;
-    clientId?: number;
-    waiterId?: number;
-    orderId?: number;
+    servingZone?: number;
+    numberOfSeats?: number;
 }

@@ -22,7 +22,7 @@ export class ClientComponent implements OnInit {
 
   delete(client: Client) {
     this.confirmationService.confirm({
-      message: 'Do you want to delete this record?' + client.clientId,
+      message: 'Do you want to delete this record?',
       accept: () => {
         this.clientService.delete(client.clientId!);
       }

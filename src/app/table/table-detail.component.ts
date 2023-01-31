@@ -16,7 +16,7 @@ export class TableDetailComponent implements OnInit {
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['tableId'];
 
-    this.table = this.tableService.find(id);
+    this.tableService.find(id).subscribe((res) => this.table = res);
   }
 
   back() {

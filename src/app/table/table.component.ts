@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
 import { Table } from '../shared/models/table.model';
 import { TableService } from '../shared/services/table.service';
 
@@ -11,13 +12,18 @@ export class TableComponent implements OnInit {
   tablesList!: Table[];
   isAdmin?: boolean = true;
 
-  constructor(private tableService: TableService) { }
+  constructor(private tableService: TableService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    this.tablesList = this.tableService.getTablesList();
+    this.tableService.query().subscribe((res) => this.tablesList = res);
   }
 
   delete(table: Table) {
-    //delete the Table
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      accept: () => {
+        this.tableService.delete(table.tableId!);
+      }
+    });
   }
 }
