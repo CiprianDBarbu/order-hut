@@ -16,7 +16,7 @@ export class ClientDetailComponent implements OnInit {
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['clientId'];
 
-    this.client = this.clientService.find(id);
+    this.clientService.find(id).subscribe((res) => this.client = res);
   }
 
   back() {

@@ -3,6 +3,7 @@ import { Client } from '../shared/models/client.model';
 import { ClientService } from '../shared/services/client.service';
 
 import {TableModule} from 'primeng/table';
+import {ConfirmationService} from 'primeng/api';
 
 @Component({
   selector: 'app-client',
@@ -13,13 +14,18 @@ export class ClientComponent implements OnInit {
   clientsList!: Client[];
   isAdmin?: boolean = true;
 
-  constructor(private clientService: ClientService) { }
+  constructor(private clientService: ClientService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    this.clientsList = this.clientService.getClientsList();
+    this.clientService.query().subscribe((res) => this.clientsList = res);
   }
 
   delete(client: Client) {
-    //delete Client
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?' + client.clientId,
+      accept: () => {
+        this.clientService.delete(client.clientId!);
+      }
+    });
   }
 }

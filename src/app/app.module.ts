@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +12,7 @@ import { WaiterComponent } from './waiter/waiter.component';
 
 import {TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { ClientDetailComponent } from './client/client-detail.component';
 import { ClientUpdateComponent } from './client/client-update.component';
 import { DishDetailComponent } from './dish/dish-detail.component';
@@ -21,6 +23,8 @@ import { TableDetailComponent } from './table/table-detail.component';
 import { TableUpdateComponent } from './table/table-update.component';
 import { WaiterDetailComponent } from './waiter/waiter-detail.component';
 import { WaiterUpdateComponent } from './waiter/waiter-update.component';
+import { ConfirmationService } from 'primeng/api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -45,9 +49,12 @@ import { WaiterUpdateComponent } from './waiter/waiter-update.component';
     BrowserModule,
     AppRoutingModule,
     TableModule,
-    ButtonModule
+    ButtonModule,
+    HttpClientModule,
+    ConfirmDialogModule,
+    BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
