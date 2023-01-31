@@ -6,22 +6,28 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="orderId">Order Id<p-sortIcon field="orderId"></p-sortIcon></th>
-                    <th>Dish list</th>
+                    <th>Client</th>
+                    <th>Planification</th>
+                    <th>Table</th>
+                    <th>Dishes</th>
                     <th>Total price</th>
-                    <th>Client Id</th>
-                    <th>Table Id</th>
                     <th>Order time</th>
+                    <th>Status</th>
+                    <th>Comments</th>
                     <th>Actions</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-order>
                 <tr>
                     <td> {{ order.orderId }} </td>
-                    <td> <span *ngFor="let dish of order.dishList"> {{ dish.name }},  </span></td>
+                    <td> {{ order.orderClient.clientName }} </td>
+                    <td> {{ order.planification.planificationId }} </td>
+                    <td> {{ order.planification.actualTable.tableId }} </td>
+                    <td> <span *ngFor="let dish of order.dishList"> {{ dish.dishName }}, </span> </td>
                     <td> {{ order.totalPrice }} lei </td>
-                    <td> {{ order.clientId }} </td>
-                    <td> {{ order.tableId }} </td>
-                    <td> {{ order.orderTime | date:'short'}} </td>
+                    <td> {{ order.orderTime | date:'short' }} </td>
+                    <td> {{ order.orderStatus }} </td>
+                    <td> {{ order.comments }} </td>
                     <td *ngIf="isAdmin" class="text-right">
                         <div class="p-buttonset">
                             <button pButton type="submit"

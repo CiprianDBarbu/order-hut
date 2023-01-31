@@ -16,7 +16,7 @@ export class OrderDetailComponent implements OnInit {
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['orderId'];
 
-    this.order = this.orderService.find(id);
+    this.orderService.find(id).subscribe((res) => this.order = res);
   }
 
   back() {
