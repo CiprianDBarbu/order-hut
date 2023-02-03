@@ -1,1 +1,17 @@
-<p>client-update works!</p>
+<div>
+    <h2>You are now editing Client {{ this.clientService.formData.clientId }}</h2>
+
+    <div>
+        <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="client-name">Name: </label>
+                <input id="client-name" type="text" formControlName="clientName" pInputText [(ngModel)]="this.clientService.formData.clientName">
+            </div>
+
+            <div>
+                <button pButton type="submit" label="Submit"></button>
+                <button pButton type="button" label="Cancel" class="p-button-secondary" (click)="previousState()"></button>
+            </div>
+        </form>
+    </div>
+</div>

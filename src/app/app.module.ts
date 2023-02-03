@@ -28,6 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlanificationComponent } from './planification/planification.component';
 import { PlanificationDetailComponent } from './planification/planification-detail.component';
 import { PlanificationUpdateComponent } from './planification/planification-update.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import { PlanificationUpdateComponent } from './planification/planification-upda
     HttpClientModule,
     ConfirmDialogModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    InputTextModule,
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent]
