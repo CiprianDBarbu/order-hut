@@ -1,1 +1,31 @@
-<p>table-update works!</p>
+<div>
+    <h2>You are now editing Table {{ this.tableService.formData.tableId }}</h2>
+
+    <div>
+        <form [formGroup]="tableForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="serving-zone">Serving zone: </label>
+                <input id="serving-zone"
+                    type="text"
+                    formControlName="servingZone"
+                    pInputText
+                    [(ngModel)]="this.tableService.formData.servingZone">
+            </div>
+            <div>
+                <label for="no-seats">Number of seats: </label>
+                <p-inputNumber id="no-seats"
+                    type="text"
+                    formControlName="numberOfSeats"
+                    [showButtons]="true"
+                    [min]="2"
+                    [max]="10"
+                    [(ngModel)]="this.tableService.formData.numberOfSeats"></p-inputNumber>
+            </div>
+
+            <div>
+                <button pButton type="submit" label="Submit"></button>
+                <button pButton type="button" label="Cancel" class="p-button-secondary" (click)="previousState()"></button>
+            </div>
+        </form>
+    </div>
+</div>

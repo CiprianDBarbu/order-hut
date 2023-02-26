@@ -1,1 +1,44 @@
-<p>dish-update works!</p>
+<div>
+    <h2>You are now editing Dish {{ this.dishService.formData.dishId }}</h2>
+
+    <div>
+        <form [formGroup]="dishForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="dish-name">Name: </label>
+                <input id="dish-name" type="text" formControlName="dishName" pInputText [(ngModel)]="this.dishService.formData.dishName">
+            </div>
+            <div>
+                <label for="price">Price: </label>
+                <p-inputNumber id="price"
+                    formControlName="price"
+                    [showButtons]="true"
+                    mode="currency" currency="RON"
+                    [step]="0.25"
+                    [(ngModel)]="this.dishService.formData.price"></p-inputNumber>
+            </div>
+            <div>
+                <label for="category">Category: </label>
+                <input id="category" type="text" formControlName="category" pInputText [(ngModel)]="this.dishService.formData.category">
+            </div>
+            <div>
+                <label for="image">Image URL: </label>
+                <input id="image" type="text" formControlName="imageUrl" pInputText [(ngModel)]="this.dishService.formData.imageUrl">
+            </div>
+            <div>
+                <label for="description">Dish description: </label>
+                <textarea id="description"
+                    formControlName="dishDescription"
+                    pInputTextarea
+                    [rows]="5" [cols]="60"
+                    [autoResize]="true"
+                    [(ngModel)]="this.dishService.formData.dishDescription"></textarea>
+            </div>
+           
+
+            <div>
+                <button pButton type="submit" label="Submit"></button>
+                <button pButton type="button" label="Cancel" class="p-button-secondary" (click)="previousState()"></button>
+            </div>
+        </form>
+    </div>
+</div>

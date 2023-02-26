@@ -30,6 +30,11 @@ import { PlanificationDetailComponent } from './planification/planification-deta
 import { PlanificationUpdateComponent } from './planification/planification-update.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DropdownModule } from 'primeng/dropdown';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -63,6 +68,11 @@ import { InputTextModule } from 'primeng/inputtext';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     InputTextModule,
+    InputNumberModule,
+    DropdownModule,
+    MultiSelectModule,
+    DialogModule,
+    InputTextareaModule,
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent]

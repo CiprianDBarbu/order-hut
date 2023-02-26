@@ -1,1 +1,27 @@
-<p>planification-update works!</p>
+<div>
+    <h2>You are now editing Planification {{ this.planificationService.formData.planificationId }}</h2>
+
+    <div>
+        <form [formGroup]="planificationForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="waiter-name">Waiter: </label>
+                <p-dropdown [options]="waiters"
+                    optionLabel="fullName"
+                    formControlName="waiter"
+                    [(ngModel)]="this.planificationService.formData.waiter"></p-dropdown>
+            </div>
+            <div>
+                <label for="table">Table: </label>
+                <p-dropdown [options]="tables"
+                    optionLabel="tableId"
+                    formControlName="actualTable"
+                    [(ngModel)]="this.planificationService.formData.actualTable"></p-dropdown>
+            </div>
+
+            <div>
+                <button pButton type="submit" label="Submit"></button>
+                <button pButton type="button" label="Cancel" class="p-button-secondary" (click)="previousState()"></button>
+            </div>
+        </form>
+    </div>
+</div>

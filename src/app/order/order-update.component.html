@@ -1,1 +1,47 @@
-<p>order-update works!</p>
+<div>
+    <h2>You are now editing Order {{ this.orderService.formData.orderId }}</h2>
+
+    <div>
+        <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="client-name">Client: </label>
+                <p-dropdown [options]="clients"
+                    optionLabel="clientName"
+                    formControlName="orderClient"
+                    [(ngModel)]="this.orderService.formData.orderClient"></p-dropdown>
+            </div>
+            <div>
+                <label for="planification">Planification: </label>
+                <p-dropdown [options]="planifications"
+                    optionLabel="planificationId"
+                    formControlName="planification"
+                    [(ngModel)]="this.orderService.formData.planification"></p-dropdown>
+            </div>
+            <div>
+                <label for="status">Status: </label>
+                <p-dropdown [options]="statusOptions"
+                    formControlName="orderStatus"
+                    [(ngModel)]="this.orderService.formData.orderStatus"></p-dropdown>
+            </div>
+
+            <div>
+                <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Show Menu"></p-button>
+                <p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
+                    [draggable]="false" [resizable]="false">
+                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <ng-template pTemplate="footer">
+                        <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
+                        </ng-template>
+                </p-dialog>
+            </div>
+            
+
+            <div>
+                <button pButton type="submit" label="Submit"></button>
+                <button pButton type="button" label="Cancel" class="p-button-secondary" (click)="previousState()"></button>
+            </div>
+        </form>
+    </div>
+</div>

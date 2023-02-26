@@ -1,1 +1,17 @@
-<p>waiter-update works!</p>
+<div>
+    <h2>You are now editing Waiter {{ this.waiterService.formData.waiterId }}</h2>
+
+    <div>
+        <form [formGroup]="waiterForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="waiter-name">Name: </label>
+                <input id="waiter-name" type="text" formControlName="fullName" pInputText [(ngModel)]="this.waiterService.formData.fullName">
+            </div>
+
+            <div>
+                <button pButton type="submit" label="Submit"></button>
+                <button pButton type="button" label="Cancel" class="p-button-secondary" (click)="previousState()"></button>
+            </div>
+        </form>
+    </div>
+</div>

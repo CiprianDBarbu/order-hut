@@ -3,10 +3,10 @@ import { Client } from "./client.model";
 import { Dish } from "./dish.model";
 import { Planification } from "./planification.model";
 
-enum OrderStatus {
-    WAITING,
-    IN_PROGRESS,
-    DONE
+export enum OrderStatus {
+    WAITING = "WAITING",
+    IN_PROGRESS = "IN_PROGRESS",
+    DONE = "DONE"
 }
 
 export class Order {
@@ -14,7 +14,7 @@ export class Order {
     totalPrice?: number;
     orderTime?: Date;
     orderStatus?: OrderStatus;
-    comments?: String;
+    comments?: string;
     orderClient!: Client;
     planification!: Planification;
     dishList!: Dish[];
