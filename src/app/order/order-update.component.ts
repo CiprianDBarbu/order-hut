@@ -32,7 +32,7 @@ export class OrderUpdateComponent implements OnInit {
   dishes!: Dish[];
   statusOptions = ['WAITING', 'IN_PROGRESS', 'DONE'];
   displayModal!: boolean;
-  
+  isAdd!: boolean;
 
   
   constructor(
@@ -46,7 +46,12 @@ export class OrderUpdateComponent implements OnInit {
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['orderId'];
 
-    this.orderService.find(id).subscribe((res) => this.updateForm(res));
+    if(id) {
+      this.orderService.find(id).subscribe((res) => this.updateForm(res));
+      this.isAdd = false;
+    } else {
+      this.isAdd = true;
+    }
 
     this.updateClients();
     this.updatePlanifications();
@@ -73,7 +78,11 @@ export class OrderUpdateComponent implements OnInit {
     console.log( this.orderForm.get(['orderStatus'])!.value);
     console.log( this.orderForm.get(['orderClient'])!.value);
     this.orderService.formData = this.createFromForm();
-    this.orderService.update().subscribe(() => this.previousState());
+    if(!this.isAdd) {
+      this.orderService.update().subscribe(() => this.previousState());
+    } else {
+      this.orderService.create().subscribe(() => this.previousState());
+    }
   }
 
   showModalDialog() {
@@ -83,7 +92,7 @@ export class OrderUpdateComponent implements OnInit {
   createFromForm(): Order {
     return {
       ...new Order(),
-      orderId: this.orderForm.get(['orderId'])!.value,
+      orderId: this.orderForm.get(['orderId'])!.value !== 0 ? this.orderForm.get(['orderId'])!.value : undefined,
       totalPrice: this.orderForm.get(['totalPrice'])!.value,
       orderTime: this.orderForm.get(['orderTime'])!.value,
       orderStatus: this.orderForm.get(['orderStatus'])!.value,

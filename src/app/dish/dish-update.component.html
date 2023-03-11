@@ -1,5 +1,6 @@
 <div>
-    <h2>You are now editing Dish {{ this.dishService.formData.dishId }}</h2>
+    <h2 *ngIf="!isAdd">You are now editing Dish {{ this.dishService.formData.dishId }}</h2>
+    <h2 *ngIf="isAdd">Add new Dish</h2>
 
     <div>
         <form [formGroup]="dishForm" (ngSubmit)="onSubmit()">

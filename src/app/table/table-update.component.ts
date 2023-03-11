@@ -17,12 +17,19 @@ export class TableUpdateComponent implements OnInit {
     numberOfSeats: [0],
   });
 
+  isAdd!: boolean;
+
   constructor(protected activatedRouter: ActivatedRoute, protected tableService: TableService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['tableId'];
 
-    this.tableService.find(id).subscribe((res) => this.updateForm(res));
+    if(id) {
+      this.tableService.find(id).subscribe((res) => this.updateForm(res));
+      this.isAdd = false;
+    } else {
+      this.isAdd = true;
+    }
   }
 
   updateForm(table: Table): void {
@@ -39,13 +46,17 @@ export class TableUpdateComponent implements OnInit {
 
   onSubmit(): void {
     this.tableService.formData = this.createFromForm();
-    this.tableService.update().subscribe(() => this.previousState());
+    if(!this.isAdd) {
+      this.tableService.update().subscribe(() => this.previousState());
+    } else {
+      this.tableService.create().subscribe(() => this.previousState());
+    }
   }
 
   createFromForm(): Table {
     return {
       ...new Table(),
-      tableId: this.tableForm.get(['tableId'])!.value,
+      tableId: this.tableForm.get(['tableId'])!.value !==0 ? this.tableForm.get(['tableId'])!.value : undefined,
       servingZone: this.tableForm.get(['servingZone'])!.value,
       numberOfSeats: this.tableForm.get(['numberOfSeats'])!.value,
     };

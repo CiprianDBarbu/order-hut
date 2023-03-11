@@ -23,6 +23,7 @@ export class PlanificationUpdateComponent implements OnInit {
 
   waiters!: Waiter[];
   tables!: Table[];
+  isAdd!: boolean;
 
 
   constructor(protected activatedRouter: ActivatedRoute, protected planificationService: PlanificationService, protected waiterService: WaiterService, protected tableService: TableService, private fb: FormBuilder) { }
@@ -30,7 +31,12 @@ export class PlanificationUpdateComponent implements OnInit {
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['planificationId'];
 
-    this.planificationService.find(id).subscribe((res) => this.updateForm(res));
+    if(id) {
+      this.planificationService.find(id).subscribe((res) => this.updateForm(res));
+      this.isAdd = false;
+    } else {
+      this.isAdd = true;
+    }
 
     this.updateWaiters();
     this.updateTables();
@@ -50,13 +56,17 @@ export class PlanificationUpdateComponent implements OnInit {
 
   onSubmit(): void {
     this.planificationService.formData = this.createFromForm();
-    this.planificationService.update().subscribe(() => this.previousState());
+    if(!this.isAdd) {
+      this.planificationService.update().subscribe(() => this.previousState());
+    } else {
+      this.planificationService.create().subscribe(() => this.previousState());
+    }
   }
 
   createFromForm(): Planification {
     return {
       ...new Planification(),
-      planificationId: this.planificationForm.get(['planificationId'])!.value,
+      planificationId: this.planificationForm.get(['planificationId'])!.value !==0 ? this.planificationForm.get(['planificationId'])!.value : undefined,
       waiter: this.planificationForm.get(['waiter'])!.value,
       actualTable: this.planificationForm.get(['actualTable'])!.value,
     };

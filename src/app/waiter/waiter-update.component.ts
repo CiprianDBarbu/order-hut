@@ -16,12 +16,19 @@ export class WaiterUpdateComponent implements OnInit {
     fullName: [''],
   });
 
+  isAdd!: boolean;
+
   constructor(protected activatedRouter: ActivatedRoute, protected waiterService: WaiterService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['waiterId'];
 
-    this.waiterService.find(id).subscribe((res) => this.updateForm(res));
+    if(id) {
+      this.waiterService.find(id).subscribe((res) => this.updateForm(res));
+      this.isAdd = false;
+    } else {
+      this.isAdd = true;
+    }
   }
 
   updateForm(waiter: Waiter): void {
@@ -37,13 +44,17 @@ export class WaiterUpdateComponent implements OnInit {
 
   onSubmit(): void {
     this.waiterService.formData = this.createFromForm();
-    this.waiterService.update().subscribe(() => this.previousState());
+    if(!this.isAdd) {
+      this.waiterService.update().subscribe(() => this.previousState());
+    } else {
+      this.waiterService.create().subscribe(() => this.previousState());
+    }
   }
 
   createFromForm(): Waiter {
     return {
       ...new Waiter(),
-      waiterId: this.waiterForm.get(['waiterId'])!.value,
+      waiterId: this.waiterForm.get(['waiterId'])!.value !==0 ? this.waiterForm.get(['waiterId'])!.value : undefined,
       fullName: this.waiterForm.get(['fullName'])!.value,
     };
   }

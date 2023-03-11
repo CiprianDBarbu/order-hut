@@ -1,5 +1,13 @@
-<div class="container">
-    <h2>Waiter listing</h2>
+<div class="container">  
+    <div class="banner-container">
+        <h2>Waiter listing</h2>
+        <button pButton
+                [routerLink]="['/waiter/new']"
+                icon="pi pi-plus"
+                class="p-button-primary p-button-sm"
+                label="New">
+        </button>
+    </div>
 
     <div class="listing-container">
         <p-confirmDialog [style]="{width: '50vw'}" rejectButtonStyleClass="p-button-text"></p-confirmDialog>

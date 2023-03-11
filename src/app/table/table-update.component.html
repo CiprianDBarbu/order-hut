@@ -1,5 +1,6 @@
 <div>
-    <h2>You are now editing Table {{ this.tableService.formData.tableId }}</h2>
+    <h2 *ngIf="!isAdd">You are now editing Table {{ this.tableService.formData.tableId }}</h2>
+    <h2 *ngIf="!isAdd">Add new Table</h2>
 
     <div>
         <form [formGroup]="tableForm" (ngSubmit)="onSubmit()">

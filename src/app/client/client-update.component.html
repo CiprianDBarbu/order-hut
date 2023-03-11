@@ -1,5 +1,6 @@
 <div>
-    <h2>You are now editing Client {{ this.clientService.formData.clientId }}</h2>
+    <h2 *ngIf="!isAdd">You are now editing Client {{ this.clientService.formData.clientId }}</h2>
+    <h2 *ngIf="isAdd">Add new Client</h2>
 
     <div>
         <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">

@@ -16,12 +16,19 @@ export class ClientUpdateComponent implements OnInit {
     clientName: [""],
   });
 
+  isAdd!: boolean;
+
   constructor(protected activatedRouter: ActivatedRoute, protected clientService: ClientService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['clientId'];
 
-    this.clientService.find(id).subscribe((res) => this.updateForm(res));
+    if(id) {
+      this.clientService.find(id).subscribe((res) => this.updateForm(res));
+      this.isAdd = false;
+    } else {
+      this.isAdd = true;
+    }
   }
 
   updateForm(client: Client): void {
@@ -37,13 +44,17 @@ export class ClientUpdateComponent implements OnInit {
 
   onSubmit(): void {
     this.clientService.formData = this.createFromForm();
-    this.clientService.update().subscribe(() => this.previousState());
+    if(!this.isAdd) {
+      this.clientService.update().subscribe(() => this.previousState());
+    } else {
+      this.clientService.create().subscribe(() => this.previousState());
+    }
   }
 
   createFromForm(): Client {
     return {
       ...new Client(),
-      clientId: this.clientForm.get(['clientId'])!.value,
+      clientId: this.clientForm.get(['clientId'])!.value !==0 ? this.clientForm.get(['clientId'])!.value : undefined,
       clientName: this.clientForm.get(['clientName'])!.value,
     };
   }

@@ -19,12 +19,19 @@ export class DishUpdateComponent implements OnInit {
     dishDescription: [''],
   });
 
+  isAdd!: boolean;
+
   constructor(protected activatedRouter: ActivatedRoute, protected dishService: DishService, private fb: FormBuilder) { }
   
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['dishId'];
 
-    this.dishService.find(id).subscribe((res) => this.updateForm(res));
+    if(id) {
+      this.dishService.find(id).subscribe((res) => this.updateForm(res));
+      this.isAdd = false;
+    } else {
+      this.isAdd = true;
+    }
   }
 
   updateForm(dish: Dish): void {
@@ -44,13 +51,17 @@ export class DishUpdateComponent implements OnInit {
 
   onSubmit(): void {
     this.dishService.formData = this.createFromForm();
-    this.dishService.update().subscribe(() => this.previousState());
+    if(!this.isAdd) {
+      this.dishService.update().subscribe(() => this.previousState());
+    } else {
+      this.dishService.create().subscribe(() => this.previousState());
+    }
   }
 
   createFromForm(): Dish {
     return {
       ...new Dish(),
-      dishId: this.dishForm.get(['dishId'])!.value,
+      dishId: this.dishForm.get(['dishId'])!.value !==0 ? this.dishForm.get(['dishId'])!.value : undefined,
       dishName: this.dishForm.get(['dishName'])!.value,
       price: this.dishForm.get(['price'])!.value,
       category: this.dishForm.get(['category'])!.value,
