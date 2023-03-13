@@ -6,6 +6,7 @@ import { ClientComponent } from './client/client.component';
 import { DishDetailComponent } from './dish/dish-detail.component';
 import { DishUpdateComponent } from './dish/dish-update.component';
 import { DishComponent } from './dish/dish.component';
+import { MenuComponent } from './menu/menu.component';
 import { OrderDetailComponent } from './order/order-detail.component';
 import { OrderUpdateComponent } from './order/order-update.component';
 import { OrderComponent } from './order/order.component';
@@ -44,6 +45,7 @@ const routes: Routes = [
   { path: 'planification/:planificationId/view', component: PlanificationDetailComponent },
   { path: 'planification/:planificationId/edit', component: PlanificationUpdateComponent },
   { path: 'planification/new', component: PlanificationUpdateComponent },
+  { path: 'menu', component: MenuComponent },
 ];
 
 
