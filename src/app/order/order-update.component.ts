@@ -25,14 +25,16 @@ export class OrderUpdateComponent implements OnInit {
     comments: [''],
     orderClient: new Client(),
     planification: new Planification(),
+    dishList: new Array<Dish>(),
   });
 
   clients!: Client[];
   planifications!: Planification[];
   dishes!: Dish[];
   statusOptions = ['WAITING', 'IN_PROGRESS', 'DONE'];
-  displayModal!: boolean;
   isAdd!: boolean;
+  addToOrder: boolean = false;
+  actualDishList: Dish[] = new Array<Dish>;
 
   
   constructor(
@@ -68,6 +70,8 @@ export class OrderUpdateComponent implements OnInit {
       orderClient: order.orderClient,
       planification: order.planification,
     });
+    this.actualDishList = order.dishList;
+    this.orderForm.get(['dishList'])?.patchValue(this.actualDishList);
   }
 
   previousState() {
@@ -75,18 +79,12 @@ export class OrderUpdateComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log( this.orderForm.get(['orderStatus'])!.value);
-    console.log( this.orderForm.get(['orderClient'])!.value);
     this.orderService.formData = this.createFromForm();
     if(!this.isAdd) {
       this.orderService.update().subscribe(() => this.previousState());
     } else {
       this.orderService.create().subscribe(() => this.previousState());
     }
-  }
-
-  showModalDialog() {
-    this.displayModal = true;
   }
 
   createFromForm(): Order {
@@ -99,6 +97,7 @@ export class OrderUpdateComponent implements OnInit {
       comments: this.orderForm.get(['comments'])!.value,
       orderClient: this.orderForm.get(['orderClient'])!.value,
       planification: this.orderForm.get(['planification'])!.value,
+      dishList: this.orderForm.get(['dishList'])!.value,
     };
   }
 
@@ -113,5 +112,19 @@ export class OrderUpdateComponent implements OnInit {
   updateDishes(): void {
     this.dishService.query().subscribe((res) => {this.dishes = res});
   }
-  
+
+  toggleAddToOrder(): void {
+    this.addToOrder = !this.addToOrder;
+  }
+
+  addDishToOrder(dish: Dish) : void {
+    this.actualDishList.push(dish);
+    this.orderForm.get(['dishList'])?.patchValue(this.actualDishList);
+
+    this.toggleAddToOrder();
+  }
+
+  removeDish(index: any) : void {
+    this.actualDishList.splice(index, 1);
+  }
 }

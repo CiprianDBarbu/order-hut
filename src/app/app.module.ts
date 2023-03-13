@@ -35,6 +35,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     WaiterUpdateComponent,
     PlanificationComponent,
     PlanificationDetailComponent,
-    PlanificationUpdateComponent
+    PlanificationUpdateComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

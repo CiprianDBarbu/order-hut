@@ -24,18 +24,54 @@
                     formControlName="orderStatus"
                     [(ngModel)]="this.orderService.formData.orderStatus"></p-dropdown>
             </div>
-
             <div>
-                <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Show Menu"></p-button>
-                <p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
-                    [draggable]="false" [resizable]="false">
-                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <ng-template pTemplate="footer">
-                        <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
-                        </ng-template>
-                </p-dialog>
+                <label for="dishList"></label>
+                <p-table [value]="actualDishList">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Image</th>
+                            <th pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon></th>
+                            <th>Category</th>
+                            <th pSortableColumn="price">Price<p-sortIcon field="price"></p-sortIcon></th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-dish let-index="rowIndex">
+                        <tr>
+                            <td> <img src="{{ dish.imageUrl }}"/></td>
+                            <td> {{ dish.dishName }} </td>
+                            <td> {{ dish.category }} </td>
+                            <td> {{ dish.price }} lei </td>
+                            <td class="text-right">
+                                <button pButton type="button" (click)="removeDish(index)"
+                                icon="pi pi-trash"
+                                class="p-button-danger p-button-sm"
+                                label="Remove dish"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage" let-columns>
+                        <tr>
+                          <td [attr.colspan]=4>
+                             No records found
+                          </td>
+                        </tr>
+                      </ng-template>
+                </p-table>
+            </div>
+
+            <button pButton type="button" label="Add Dish to Order" class="p-button-primary" (click)="toggleAddToOrder()"></button>
+            <div *ngIf="addToOrder" class="dishes-container">
+                <div class="menu-card" *ngFor="let dish of dishes" (click)="addDishToOrder(dish)">
+                    <div class="left-side">
+                        <img src="{{ dish.imageUrl }}" class="dish-picture" />
+                        <div class="dish-name"> {{ dish.dishName }} </div>
+                        <div class="dish-description"> {{ dish.dishDescription }} </div>
+                    </div>
+                    <div class="right-side">
+                        <div class="dish-price"> {{ dish.price }} </div>
+                    </div>
+                </div>
             </div>
             
 
