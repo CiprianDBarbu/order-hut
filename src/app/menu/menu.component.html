@@ -1,3 +1,22 @@
-<div>
-    <h2>Order Hut Menu</h2>
+<div class="section-container">
+    <h2 class="title">Order Hut Menu</h2>
+    <div class="menu-container">
+        <div *ngFor="let section of sections" class="menu-section">
+            <div class="menu-category"> {{ section }} </div>
+            <div class="menu-item-container">
+                <div *ngFor="let dish of menu.get(section)" class="menu-item">
+                    <div class="menu-item-inner">
+                        <img src="{{ dish.imageUrl }}" class="item-image" />
+                        <div class="item-details" >
+                            <div class="upper-details">
+                                <div class="item-name"> {{ dish.dishName }} </div>
+                                <div class="item-price"><span> De la  </span> {{ dish.price | number : '1.2-2'}} </div>
+                            </div>
+                            <div class="lower-details"> {{ dish.dishDescription }} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,0 +1,74 @@
+@import '../global-variables.scss';
+@import "../typography";
+
+.section-container {
+	max-width: $sections-width;
+	margin: auto;
+
+	h2 {
+		text-align: center;
+
+		&:after {
+			content: "";
+			display: block;
+			position: relative;
+			margin: calc($gap / 2) auto;
+			width: 100px;
+			border: 2px solid $orange;
+		}
+	}
+
+	.menu-section {
+		.menu-category {
+			font-size: $font-size-xlg;
+			line-height: $font-size-xlg;
+			font-weight: 700;
+			text-transform: uppercase;
+			padding: calc($gap / 2) 0;
+			margin: calc($gap / 1.5) 0;
+			border-bottom: 3px solid $yellow-dark;
+		}
+
+		.menu-item-container {
+			display: flex;
+			flex-wrap: wrap;
+			gap: $gap;
+
+			.menu-item {
+				flex-basis: calc((100% - $gap) / 2);
+				padding-bottom: calc($gap / 2);
+				border-bottom: 1px solid $yellow-dark;
+
+				.menu-item-inner {
+					display: flex;
+					gap: calc($gap / 2);
+
+					img {
+						width: calc($gap * 2);
+						height: calc($gap * 2);
+					}
+
+					.item-details {
+						width: 100%;
+						.upper-details {
+							display: flex;
+							justify-content: space-between;
+							margin-bottom: calc($gap / 2);
+
+							.item-name,
+							.item-price {
+								font-weight: 700;
+
+								span {
+									font-weight: 400;
+									color: $gray-light;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+}

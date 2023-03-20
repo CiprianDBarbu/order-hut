@@ -1,6 +1,38 @@
 //Predefined colors
 $yellow: #F3D303;
 $yellow-dark: #B29B03;
+$orange: #df733c;
 $black: #131102;
+$gray-light: #A6A6A6;
+
 //Predefined spaces
-$gap: 32px;
+$gap: 40px;
+
+//Predefined breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1200px,
+  xxl: 1400px,
+) !default;
+$sections-width: 1200px;
+
+//Font sizes
+$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+
+$font-size-xxxlg: $font-size-base * 2 !default; // 32px
+$font-size-xxlg: $font-size-base * 1.75 !default; // 28px
+$font-size-xlg: $font-size-base * 1.5 !default; // 24px
+$font-size-lg: $font-size-base * 1.25 !default; // 20px
+$font-size-md: $font-size-base * 1.125 !default; // 18px
+$font-size-sm: $font-size-base * 0.875 !default; // 14px
+$font-size-xs: $font-size-base * 0.75 !default; // 12px
+
+$h1-font-size: $font-size-base * 2 !default; // 32px
+$h2-font-size: $font-size-base * 1.75 !default; // 28px
+$h3-font-size: $font-size-base * 1.5 !default; // 24px
+$h4-font-size: $font-size-base * 1.25 !default; // 20px
+$h5-font-size: $font-size-base * 1.125 !default; // 18px
+$h6-font-size: $font-size-base !default; // 16px

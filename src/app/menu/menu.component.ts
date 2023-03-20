@@ -10,10 +10,24 @@ import { DishService } from '../shared/services/dish.service';
 export class MenuComponent implements OnInit {
 
   dishList!: Dish[];
+  sections!: string[];
+  menu: Map<string, Dish[]> = new Map<string, Dish[]>();
 
   constructor(private dishService: DishService) { }
 
   ngOnInit(): void {
-    this.dishService.query().subscribe(res => this.dishList = res);
+    this.dishService.query().subscribe((res) => {
+      this.dishList = res;
+      this.sections = [...new Set(res.map(el => el.category || ""))].filter(el => el !== "RĂCORITOARE");
+      this.sections.push("RĂCORITOARE");
+      this.initializeMenu();
+    });
+  }
+
+  initializeMenu(): void {
+    this.sections.forEach(el => {
+      const items = this.dishList.filter(dish => dish.category == el);
+      this.menu.set(el, items);
+    });
   }
 }
