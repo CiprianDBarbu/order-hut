@@ -18,11 +18,12 @@ export class DishComponent implements OnInit {
     this.dishService.query().subscribe((res) => this.dishList = res);
   }
 
-  delete(dish: Dish) {
+  delete(dish: Dish): void {
     this.confirmationService.confirm({
       message: 'Do you want to delete this record?',
       accept: () => {
-        this.dishService.delete(dish.dishId!);
+        this.dishService.delete(dish.dishId!).subscribe();
+        location.reload();
       }
     });
   }

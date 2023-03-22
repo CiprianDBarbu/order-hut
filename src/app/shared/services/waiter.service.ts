@@ -29,7 +29,7 @@ export class WaiterService {
     return this.http.get<Waiter>(`${this.baseURL}/${id}`);
   }
 
-  delete(id: number) {
+  delete(id: number): Observable<any> {
     return this.http.delete(`${this.baseURL}/${id}`);
   }
 

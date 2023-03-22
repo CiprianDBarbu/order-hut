@@ -18,11 +18,12 @@ export class PlanificationComponent implements OnInit {
     this.planificationService.query().subscribe((res) => this.planificationList = res);
   }
 
-  delete(planification: Planification) {
+  delete(planification: Planification): void {
     this.confirmationService.confirm({
       message: 'Do you want to delete this record?',
       accept: () => {
-        this.planificationService.delete(planification.planificationId!);
+        this.planificationService.delete(planification.planificationId!).subscribe();
+        location.reload();
       }
     });
   }

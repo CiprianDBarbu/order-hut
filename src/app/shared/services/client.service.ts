@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, retry } from 'rxjs';
 import { Client } from '../models/client.model';
@@ -29,7 +29,7 @@ export class ClientService {
     return this.http.get<Client>(`${this.baseURL}/${id}`);
   }
 
-  delete(id: number) {
+  delete(id: number): Observable<any> {
     return this.http.delete(`${this.baseURL}/${id}`);
   } 
 

@@ -18,11 +18,12 @@ export class TableComponent implements OnInit {
     this.tableService.query().subscribe((res) => this.tablesList = res);
   }
 
-  delete(table: Table) {
+  delete(table: Table): any {
     this.confirmationService.confirm({
       message: 'Do you want to delete this record?',
       accept: () => {
-        this.tableService.delete(table.tableId!);
+        this.tableService.delete(table.tableId!).subscribe();
+        location.reload();
       }
     });
   }

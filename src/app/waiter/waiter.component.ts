@@ -18,11 +18,12 @@ export class WaiterComponent implements OnInit {
     this.waiterService.query().subscribe((res) => this.waitersList = res);
   }
 
-  delete(waiter: Waiter) {
+  delete(waiter: Waiter): void {
     this.confirmationService.confirm({
       message: 'Do you want to delete this record?',
       accept: () => {
         this.waiterService.delete(waiter.waiterId!);
+        location.reload();
       }
     });
   }

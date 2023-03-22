@@ -20,11 +20,12 @@ export class ClientComponent implements OnInit {
     this.clientService.query().subscribe((res) => this.clientsList = res);
   }
 
-  delete(client: Client) {
+  delete(client: Client): void {
     this.confirmationService.confirm({
       message: 'Do you want to delete this record?',
       accept: () => {
-        this.clientService.delete(client.clientId!);
+        this.clientService.delete(client.clientId!).subscribe();
+        location.reload();
       }
     });
   }
