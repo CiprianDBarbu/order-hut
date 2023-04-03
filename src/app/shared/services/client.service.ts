@@ -1,5 +1,5 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable, retry } from 'rxjs';
 import { Client } from '../models/client.model';
 
@@ -14,23 +14,48 @@ export class ClientService {
   constructor(private http: HttpClient) { }
 
   create(): Observable<Client> {
-    return this.http.post<Client>(`${this.baseURL}/new`, this.formData);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.post<Client>(`${this.baseURL}/new`, this.formData, { headers: headers });
   }
 
   update(): Observable<Client> {
-    return this.http.put<Client>(`${this.baseURL}/${this.formData.clientId}`, this.formData);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.put<Client>(`${this.baseURL}/${this.formData.clientId}`, this.formData, { headers: headers });
   }
 
   query(): Observable<Client[]> {
-    return this.http.get<Client[]>(`${this.baseURL}/list`);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.get<Client[]>(`${this.baseURL}/list`, { headers: headers });
   }
 
   find(id: number): Observable<Client> {
-    return this.http.get<Client>(`${this.baseURL}/${id}`);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.get<Client>(`${this.baseURL}/${id}`, { headers: headers });
   }
 
   delete(id: number): Observable<any> {
-    return this.http.delete(`${this.baseURL}/${id}`);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.delete(`${this.baseURL}/${id}`, { headers: headers });
   } 
 
   // getClientsList() {

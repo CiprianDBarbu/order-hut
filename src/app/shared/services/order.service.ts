@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Order } from '../models/order.model';
@@ -14,23 +14,48 @@ export class OrderService {
   constructor(private http: HttpClient) { }
 
   create(): Observable<Order> {
-    return this.http.post<Order>(`${this.baseURL}/new`, this.formData);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.post<Order>(`${this.baseURL}/new`, this.formData, { headers: headers });
   }
 
   update(): Observable<Order> {
-    return this.http.put<Order>(`${this.baseURL}/${this.formData.orderId}`, this.formData);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.put<Order>(`${this.baseURL}/${this.formData.orderId}`, this.formData, { headers: headers });
   }
 
   query(): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.baseURL}/list`);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.get<Order[]>(`${this.baseURL}/list`, { headers: headers });
   }
 
   find(id: number): Observable<Order> {
-    return this.http.get<Order>(`${this.baseURL}/${id}`);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.get<Order>(`${this.baseURL}/${id}`, { headers: headers });
   }
 
   delete(id: number): Observable<any> {
-    return this.http.delete(`${this.baseURL}/${id}`);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.delete(`${this.baseURL}/${id}`, { headers: headers });
   }
 
   // getOrdersList() {

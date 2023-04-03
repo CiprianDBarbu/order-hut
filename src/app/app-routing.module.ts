@@ -6,6 +6,8 @@ import { ClientComponent } from './client/client.component';
 import { DishDetailComponent } from './dish/dish-detail.component';
 import { DishUpdateComponent } from './dish/dish-update.component';
 import { DishComponent } from './dish/dish.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
 import { OrderDetailComponent } from './order/order-detail.component';
 import { OrderUpdateComponent } from './order/order-update.component';
@@ -21,6 +23,8 @@ import { WaiterUpdateComponent } from './waiter/waiter-update.component';
 import { WaiterComponent } from './waiter/waiter.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'client', component: ClientComponent },
   { path: 'client/:clientId/view', component: ClientDetailComponent },
   { path: 'client/:clientId/edit', component: ClientUpdateComponent },

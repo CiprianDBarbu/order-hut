@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Table } from '../models/table.model';
@@ -13,23 +13,48 @@ export class TableService {
   constructor(private http: HttpClient) { }
 
   create(): Observable<Table> {
-    return this.http.post<Table>(`${this.baseURL}/new`, this.formData);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.post<Table>(`${this.baseURL}/new`, this.formData, { headers: headers });
   }
 
   update(): Observable<Table> {
-    return this.http.put<Table>(`${this.baseURL}/${this.formData.tableId}`, this.formData);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.put<Table>(`${this.baseURL}/${this.formData.tableId}`, this.formData, { headers: headers });
   }
 
   query(): Observable<Table[]> {
-    return this.http.get<Table[]>(`${this.baseURL}/list`);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.get<Table[]>(`${this.baseURL}/list`, { headers: headers });
   }
 
   find(id: number): Observable<Table> {
-    return this.http.get<Table>(`${this.baseURL}/${id}`);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.get<Table>(`${this.baseURL}/${id}`, { headers: headers });
   }
 
   delete(id: number): Observable<any> {
-    return this.http.delete(`${this.baseURL}/${id}`);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.delete(`${this.baseURL}/${id}`, { headers: headers });
   }
 
   // getTablesList() {

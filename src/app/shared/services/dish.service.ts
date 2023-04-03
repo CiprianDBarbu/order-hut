@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Dish } from '../models/dish.model';
@@ -14,23 +14,51 @@ export class DishService {
   constructor(private http: HttpClient) { }
 
   create(): Observable<Dish> {
-    return this.http.post<Dish>(`${this.baseURL}/new`, this.formData);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.post<Dish>(`${this.baseURL}/new`, this.formData, { headers: headers });
   }
 
   update(): Observable<Dish> {
-    return this.http.put<Dish>(`${this.baseURL}/${this.formData.dishId}`, this.formData);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.put<Dish>(`${this.baseURL}/${this.formData.dishId}`, this.formData, { headers: headers });
   }
 
   query(): Observable<Dish[]> {
-    return this.http.get<Dish[]>(`${this.baseURL}/list`);
+    const JWTToken = sessionStorage.getItem('token')!;
+    let headers = new HttpHeaders();
+    if(JWTToken) {
+      headers = new HttpHeaders({
+        'Authorization': `Bearer ${JWTToken}`,
+        'Accept-Encoding': 'identity'
+      });
+    }
+    return this.http.get<Dish[]>(`${this.baseURL}/list`, { headers: headers });
   }
 
   find(id: number): Observable<Dish> {
-    return this.http.get<Dish>(`${this.baseURL}/${id}`);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.get<Dish>(`${this.baseURL}/${id}`, { headers: headers });
   }
 
   delete(id: number): Observable<any> {
-    return this.http.delete(`${this.baseURL}/${id}`);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.delete(`${this.baseURL}/${id}`, { headers: headers });
   }
 
   // getDishesList() {

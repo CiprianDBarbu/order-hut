@@ -36,6 +36,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MenuComponent } from './menu/menu.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { MenuComponent } from './menu/menu.component';
     PlanificationComponent,
     PlanificationDetailComponent,
     PlanificationUpdateComponent,
-    MenuComponent
+    MenuComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

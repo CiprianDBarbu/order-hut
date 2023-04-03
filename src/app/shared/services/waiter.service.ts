@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Waiter } from '../models/waiter.model';
@@ -14,23 +14,48 @@ export class WaiterService {
   constructor(private http: HttpClient) { }
 
   create(): Observable<Waiter> {
-    return this.http.post<Waiter>(`${this.baseURL}/new`, this.formData);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.post<Waiter>(`${this.baseURL}/new`, this.formData, { headers: headers });
   }
 
   update(): Observable<Waiter> {
-    return this.http.put<Waiter>(`${this.baseURL}/${this.formData.waiterId}`, this.formData);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.put<Waiter>(`${this.baseURL}/${this.formData.waiterId}`, this.formData, { headers: headers });
   }
 
   query(): Observable<Waiter[]> {
-    return this.http.get<Waiter[]>(`${this.baseURL}/list`);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.get<Waiter[]>(`${this.baseURL}/list`, { headers: headers });
   }
 
   find(id: number): Observable<Waiter> {
-    return this.http.get<Waiter>(`${this.baseURL}/${id}`);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.get<Waiter>(`${this.baseURL}/${id}`, { headers: headers });
   }
 
   delete(id: number): Observable<any> {
-    return this.http.delete(`${this.baseURL}/${id}`);
+    const JWTToken = sessionStorage.getItem('token')!;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${JWTToken}`,
+      'Accept-Encoding': 'identity'
+    });
+    return this.http.delete(`${this.baseURL}/${id}`, { headers: headers });
   }
 
   // getWaitersList() {
