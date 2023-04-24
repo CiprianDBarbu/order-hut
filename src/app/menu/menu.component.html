@@ -1,11 +1,12 @@
 <div class="section-container">
+    <p-toast [style]="{ top: '70px' }"></p-toast>
     <h2 class="title">Order Hut Menu</h2>
     <div class="menu-container">
         <div *ngFor="let section of sections" class="menu-section">
             <div class="menu-category"> {{ section }} </div>
             <div class="menu-item-container">
                 <div *ngFor="let dish of menu.get(section)" class="menu-item">
-                    <div class="menu-item-inner">
+                    <div class="menu-item-inner" (click)="showDialog(dish)">
                         <img src="{{ dish.imageUrl }}" class="item-image" />
                         <div class="item-details" >
                             <div class="upper-details">
@@ -18,5 +19,12 @@
                 </div>
             </div>
         </div>
+        <p-dialog header="{{ selectedDish.dishName }}" [(visible)]="isVisible" [modal]="true" [style]="{ width: '40vw' }" [draggable]="false" [resizable]="false">
+            <div class="m-0">
+                <img src="{{ selectedDish.imageUrl }}" class="item-image" />
+                <div class="description">{{ selectedDish.dishDescription }}</div>
+                <button pButton class="add-dish" label=" Add to cart - {{ selectedDish.price | number : '1.2-2'}} RON" (click)="addToCart($event)"></button>
+            </div>
+        </p-dialog>
     </div>
 </div>

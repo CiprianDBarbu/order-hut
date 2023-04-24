@@ -1,0 +1,64 @@
+<div>
+    <form [formGroup]="cartForm" (ngSubmit)="toCheckout()">
+        <div class="cart-modal">
+            <div class="left-side">
+                <div class="section contact">
+                    <i class="pi pi-user"></i>
+                    <div class="content">
+                        <div class="title">Conctact</div>
+                        <input id="client-name" type="text" class="form-control" formControlName="clientName" required pInputText [(ngModel)]="this.clientService.formData.clientName">
+                    </div>
+                </div>
+                <div class="section hour">
+                    <i class="pi pi-clock"></i>
+                    <div class="content">
+                        <div class="title">Pick an hour</div>
+                        <p-calendar appendTo="body"
+                            formControlName="reservationDate"
+                            [(ngModel)]="this.orderService.formData.orderTime"
+                            [minDate]="minDate"
+                            [maxDate]="maxDate"
+                            [readonlyInput]="true"
+                            [showTime]="true"
+                            ></p-calendar>
+
+                    </div>
+                </div>
+                <div class="section people">
+                    <i class="pi pi-users"></i>
+                    <div class="content">
+                        <div class="title">Number of people</div>
+                        <p-inputNumber mode="decimal" [showButtons]="true" inputId="minmax-buttons" [min]="1" [max]="10"  formControlName="numberOfPeople"> </p-inputNumber>
+                    </div>
+                </div>
+                <div class="section comments">
+                    <i class="pi pi-pencil"></i>
+                    <div class="content">
+                        <div class="title">Comments</div>
+                        <textarea id="comments" rows="5" cols="30" pInputTextarea  formControlName="comments" [(ngModel)]="this.orderService.formData.comments"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="right-side">
+                <div *ngIf="!isOrderCreated && !items">
+                    Your cart is empty!
+                </div>
+                <div class="cart-container">
+                    <div *ngFor="let item of shoppingItems | async">
+                        <div class="item-card">
+                            <img src="{{ item.imageUrl }}" class="item-image" />
+                            <div class="item-name"> {{ item.dishName }} </div>
+                            <div class="item-price"> {{ item.price | number : '1.2-2'}} lei</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="total-price">
+                    <span>Sub-total <br>{{ cartSubtotal }} RON</span>
+                    <span>TVA (9% included)<br> {{ (cartSubtotal * 9) / 100 }} RON</span>
+                    Total<br> {{ cartSubtotal }} ron
+                </div>
+            </div>
+            <button class="submit" pButton type="submit" [disabled]="!cartForm.valid" label="Place your order"></button>
+        </div>
+    </form>
+</div>

@@ -8,6 +8,8 @@
   background-color: $yellow;
   height: 4rem;
   padding: 0 0.5rem;
+  position: fixed;
+  top: 0;
 
   .header-routes {
     display: flex;

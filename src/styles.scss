@@ -4,4 +4,26 @@ $gap: 32px;
 body {
   margin: 0;
   background-image: url("https://www.profi.ro/wp-content/themes/profi/assets/images/bg-food.png");
+  margin-top: calc($gap * 2.25);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c6c6c6!important;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

@@ -35,9 +35,15 @@ import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CalendarModule } from 'primeng/calendar';
+import { ToastModule } from 'primeng/toast';
 import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { StoreModule } from '@ngrx/store';
+import { ShoppingReducer } from './store/shopping.reducer';
+import { CartComponent } from './cart/cart.component';
+import { reducers } from './store/app-state';
 
 @NgModule({
   declarations: [
@@ -62,7 +68,8 @@ import { LoginComponent } from './login/login.component';
     PlanificationUpdateComponent,
     MenuComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +86,9 @@ import { LoginComponent } from './login/login.component';
     MultiSelectModule,
     DialogModule,
     InputTextareaModule,
+    CalendarModule,
+    ToastModule,
+    StoreModule.forRoot(reducers),
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent]

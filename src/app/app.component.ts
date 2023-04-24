@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Order Hut';
+
+  visible!: boolean;
+
+  showDialog() {
+    this.visible = true;
+}
 }
