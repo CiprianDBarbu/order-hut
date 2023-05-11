@@ -18,6 +18,7 @@ export class ClientComponent implements OnInit {
 
   ngOnInit(): void {
     this.clientService.query().subscribe((res) => this.clientsList = res);
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
   }
 
   delete(client: Client): void {
