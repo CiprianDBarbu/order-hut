@@ -1,4 +1,66 @@
-<div>
-    <h1>Hi {{ userName }}</h1>
-    <p><a [routerLink]="['/login']" (click) ="logout()">Logout</a></p>
+<div class="home-container">
+    <div class="page-header">
+        <div class="header-info">
+            <h1>Order Hut</h1>
+            <span>Your online platform to place and manage your orders!</span>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="section about-us">
+            <h2>About Us</h2>
+            <span>We invite you to join us at Trattoria Deliziosa and embark on a culinary adventure through Italy's flavors.
+                Whether you're seeking a romantic dinner for two or a casual gathering with friends,
+                our small Italian restaurant promises to deliver an unforgettable experience. Buon appetito!
+            </span>
+            <span>
+                Indulge in our carefully curated menu that showcases a diverse array of Italian specialties.
+                 From classic Neapolitan pizzas with thin, crispy crusts to velvety pasta dishes prepared with homemade sauces, each bite is a delightful experience.
+                And don't forget to save room for our delectable desserts, including the irresistible tiramisu that will transport your taste buds to cloud nine.
+            </span>
+        </div>
+
+        <div class="section bordered-section menu-redirect">
+            <h2>Check the menu!</h2>
+            <span>
+                Check our menu and place an order right away!
+            </span>
+            <button pButton type="button"
+                routerLink="/menu"
+                label="See Menu"
+                class="btn p-button-warning">
+            </button>
+        </div>
+
+        <div class="section menu-highlight">
+            <h2>Menu highlight</h2>
+            <p-carousel [value]="dishList" [numVisible]="3" [numScroll]="1" [circular]="true">
+                <ng-template let-dish pTemplate="dish">
+                    <div class="card">
+                        <img src="{{ dish.imageUrl }}">
+                        <p> {{ dish.dishName }} </p>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+
+        <div class="section bordered-section contact">
+            <h2>Contact details</h2>
+            <div>
+                <h3>Order program</h3>
+                <span>09:00AM - 06:00PM</span>
+
+                <h3>Reservation program</h3>
+                <span>09:00AM - 06:00PM</span>
+
+                <h3>Ways to contact us</h3>
+                <span class="pi pi-phone"> : <a href="tel:+123 456 789">+123 456 789</a></span>
+                <span class="pi pi-at"> : <a href="mailto:order.hut@mail.com">order.hut@mail.com</a></span>
+                <span class="pi pi-compass"> : Vacaresti 232, Bucharest, Romania</span>
+            </div>
+        </div>
+
+
+        <h1>Hi {{ userName }}</h1>
+        <p><a [routerLink]="['/login']" (click) ="logout()">Logout</a></p>
+    </div>
 </div>

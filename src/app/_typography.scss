@@ -1,5 +1,10 @@
 @import "global-variables";
 
+@font-face {
+  font-family: NexusRustSlab;
+  src: url(../assets/NexaRustSlab-Trial-Black3.ttf);
+}
+
 h1,
 h2,
 h3,
@@ -9,12 +14,18 @@ h6 {
   font-weight: 700;
   line-height: 1.35;
   margin: 0;
+  font-family: NexusRustSlab;
 }
 
 p {
   font-size: $font-size-base;
   line-height: 1.5;
   margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: $black;
 }
 
 h1 {

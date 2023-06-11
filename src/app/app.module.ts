@@ -32,6 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
+import { CarouselModule } from 'primeng/carousel';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
@@ -88,6 +89,7 @@ import { reducers } from './store/app-state';
     InputTextareaModule,
     CalendarModule,
     ToastModule,
+    CarouselModule,
     StoreModule.forRoot(reducers),
   ],
   providers: [ConfirmationService],
