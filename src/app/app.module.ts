@@ -45,6 +45,7 @@ import { StoreModule } from '@ngrx/store';
 import { ShoppingReducer } from './store/shopping.reducer';
 import { CartComponent } from './cart/cart.component';
 import { reducers } from './store/app-state';
+import { GoogleMapsModule } from '@angular/google-maps'
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { reducers } from './store/app-state';
     CalendarModule,
     ToastModule,
     CarouselModule,
+    GoogleMapsModule,
     StoreModule.forRoot(reducers),
   ],
   providers: [ConfirmationService],

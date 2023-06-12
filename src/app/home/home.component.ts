@@ -15,6 +15,14 @@ export class HomeComponent implements OnInit {
   userName!: string;
   dishList!: Dish[];
 
+  //variables used for Google Maps initialisation
+  display: any;
+  center: google.maps.LatLngLiteral = {
+      lat: 44.411723,
+      lng: 26.113901
+  };
+  zoom = 16;
+
   constructor(private http: HttpClient, private userService: UserService, private dishService: DishService) { }
 
   ngOnInit(): void {
@@ -31,6 +39,14 @@ export class HomeComponent implements OnInit {
 
   logout() : void {
     sessionStorage.setItem('token', '');
+  }
+
+  moveMap(event: google.maps.MapMouseEvent) {
+    if (event.latLng != null) this.center = (event.latLng.toJSON());
+  }
+
+  move(event: google.maps.MapMouseEvent) {
+    if (event.latLng != null) this.display = event.latLng.toJSON();
   }
   
 }

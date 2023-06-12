@@ -36,3 +36,32 @@
     max-width: 3.5rem;
   }
 }
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc($gap / 2);
+
+  height: 200px;
+  background-color: $gray-light;
+  color: #ffffff;
+  text-align: center;
+
+  .footer-links {
+    display: flex;
+    flex-direction: row;
+    gap: $gap;
+    justify-content: center;
+
+    a {
+      color: #ffffff;
+      font-family: NexusRustSlab;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+  }
+}

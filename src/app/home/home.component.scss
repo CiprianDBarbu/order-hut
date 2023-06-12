@@ -74,6 +74,17 @@
 					}
 				}
 			}
+
+			&.contact {
+				.contact-content {
+					display: flex;
+					flex-direction: row;
+
+					.information, .map {
+						width: 45%;
+					}
+				}
+			}
 		}
 	}
 }
