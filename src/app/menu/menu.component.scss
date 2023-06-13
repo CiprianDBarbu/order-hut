@@ -1,9 +1,34 @@
 @import '../global-variables.scss';
 @import "../typography";
 
+.page-header {
+	background: linear-gradient(rgba(0, 0, 0, 0.5),
+			rgba(0, 0, 0, 0.5)),
+		url(https://madeinitaly.com.au/wp-content/uploads/2021/09/Made-In-Italy-Chiswick.jpg);
+	height: 700px;
+	position: relative;
+
+	.header-info {
+		margin: 0;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		color: #ffffff;
+		font-size: $font-size-xxxlg;
+
+		h1 {
+			font-size: calc($font-size-xxxlg * 3);
+			text-align: center;
+			font-family: NexusRustSlab;
+		}
+	}
+}
+
 .section-container {
 	max-width: $sections-width;
 	margin: auto;
+	margin-top: calc($gap * 2);
 
 	h2 {
 		text-align: center;
@@ -24,6 +49,7 @@
 			line-height: $font-size-xlg;
 			font-weight: 700;
 			text-transform: uppercase;
+			font-family: NexusRustSlab;
 			padding: calc($gap / 2) 0;
 			margin: calc($gap / 1.5) 0;
 			border-bottom: 3px solid $yellow-dark;
@@ -60,6 +86,7 @@
 							.item-name,
 							.item-price {
 								font-weight: 700;
+								font-family: NexusRustSlab;
 
 								span {
 									font-weight: 400;

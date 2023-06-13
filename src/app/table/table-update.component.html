@@ -1,26 +1,28 @@
-<div>
+<div class="col-8">
     <h2 *ngIf="!isAdd">You are now editing Table {{ this.tableService.formData.tableId }}</h2>
-    <h2 *ngIf="!isAdd">Add new Table</h2>
+    <h2 *ngIf="isAdd">Add new Table</h2>
 
     <div>
         <form [formGroup]="tableForm" (ngSubmit)="onSubmit()">
             <div>
-                <label for="serving-zone">Serving zone: </label>
-                <input id="serving-zone"
+                <p-fieldset legend="Serving zone">
+                    <input id="serving-zone"
                     type="text"
                     formControlName="servingZone"
                     pInputText
                     [(ngModel)]="this.tableService.formData.servingZone">
+                </p-fieldset>
             </div>
             <div>
-                <label for="no-seats">Number of seats: </label>
-                <p-inputNumber id="no-seats"
+                <p-fieldset legend="Number of seats">
+                    <p-inputNumber id="no-seats"
                     type="text"
                     formControlName="numberOfSeats"
                     [showButtons]="true"
                     [min]="2"
                     [max]="10"
                     [(ngModel)]="this.tableService.formData.numberOfSeats"></p-inputNumber>
+                </p-fieldset>
             </div>
 
             <div>

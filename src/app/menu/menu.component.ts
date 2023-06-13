@@ -26,8 +26,8 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     this.dishService.query().subscribe((res) => {
       this.dishList = res;
-      this.sections = [...new Set(res.map(el => el.category || ""))].filter(el => el !== "RĂCORITOARE");
-      this.sections.push("RĂCORITOARE");
+      this.sections = [...new Set(res.map(el => el.category || ""))].filter(el => el !== "RACORITOARE");
+      this.sections.push("RACORITOARE");
       this.initializeMenu();
     });
   }

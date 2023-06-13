@@ -10,7 +10,10 @@
     </div>
 
     <div class="listing-container">
-        <p-table [value]="ordersList">
+        <p-table [value]="ordersList"
+        [rowHover]="true"
+        [rows]="5"
+        [paginator]="true">
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="orderId">Order Id<p-sortIcon field="orderId"></p-sortIcon></th>
@@ -31,7 +34,7 @@
                     <td> {{ order.orderClient.clientName }} </td>
                     <td> {{ order.planification.planificationId }} </td>
                     <td> {{ order.planification.actualTable.tableId }} </td>
-                    <td> <span *ngFor="let dish of order.dishList"> {{ dish.dishName }}, </span> </td>
+                    <td style="max-width: 300px;"> <span *ngFor="let dish of order.dishList"> {{ dish.dishName }}, </span> </td>
                     <td> {{ order.totalPrice }} lei </td>
                     <td> {{ order.orderTime | date:'short' }} </td>
                     <td> {{ order.orderStatus }} </td>
@@ -42,20 +45,20 @@
                                     [routerLink]="['/order', order.orderId, 'view']"
                                     icon="pi pi-eye"
                                     class="p-button-sm"
-                                    label="View">
+                                    pTooltip="View" tooltipPosition="bottom">
                             </button>
         
                             <button pButton type="submit"
                                     [routerLink]="['/order', order.orderId, 'edit']"
                                     icon="pi pi-pencil"
                                     class="p-button-warning p-button-sm"
-                                    label="Edit">
+                                    pTooltip="Edit" tooltipPosition="bottom">
                             </button>
         
                             <button pButton type="submit" (click)="delete(order)"
                                     icon="pi pi-trash"
                                     class="p-button-danger p-button-sm"
-                                    label="Delete">
+                                    pTooltip="Delete" tooltipPosition="bottom">
                             </button>
                         </div>
                     </td>

@@ -2,20 +2,17 @@
     <div *ngIf="table">
         <h2><span>Table</span> {{ table.tableId }}</h2>
 
-        <dl class="row-md jh-entity-details">
-            <dt><span><Table></Table> Id</span></dt>
-            <dd>
-                <span>{{ table.tableId }}</span>
-            </dd>
-            <dt><span>Serving Zone</span></dt>
-            <dd>
-                <span>{{ table.servingZone }}</span>
-            </dd>
-            <dt><span>Number of Seats</span></dt>
-            <dd>
-                <span>{{ table.numberOfSeats }}</span>
-            </dd>
-        </dl>
+        <p-fieldset legend="Table ID">
+            <span>{{ table.tableId }}</span>
+        </p-fieldset>
+
+        <p-fieldset legend="Serving Zone">
+            <span>{{ table.servingZone }}</span>
+        </p-fieldset>
+
+        <p-fieldset legend="Number of Seats">
+            <span>{{ table.numberOfSeats }}</span>
+        </p-fieldset>
 
         <button pButton type="submit"
                 (click)="back()"

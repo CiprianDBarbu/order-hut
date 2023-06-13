@@ -42,6 +42,7 @@ export class TableUpdateComponent implements OnInit {
 
   previousState() {
     window.history.back();
+    this.tableService.formData = new Table();
   }
 
   onSubmit(): void {

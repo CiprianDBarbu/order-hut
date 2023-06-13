@@ -1,41 +1,49 @@
-<div>
+<div class="col-8">
     <h2 *ngIf="!isAdd">You are now editing Dish {{ this.dishService.formData.dishId }}</h2>
     <h2 *ngIf="isAdd">Add new Dish</h2>
 
     <div>
         <form [formGroup]="dishForm" (ngSubmit)="onSubmit()">
             <div>
-                <label for="dish-name">Name: </label>
-                <input id="dish-name" type="text" formControlName="dishName" pInputText [(ngModel)]="this.dishService.formData.dishName">
+                <p-fieldset legend="Name">
+                    <input id="dish-name" type="text" formControlName="dishName" pInputText [(ngModel)]="this.dishService.formData.dishName">
+                </p-fieldset>
             </div>
+
             <div>
-                <label for="price">Price: </label>
-                <p-inputNumber id="price"
+                <p-fieldset legend="Price">
+                    <p-inputNumber id="price"
                     formControlName="price"
                     [showButtons]="true"
                     mode="currency" currency="RON"
                     [step]="0.25"
                     [(ngModel)]="this.dishService.formData.price"></p-inputNumber>
+                </p-fieldset>
             </div>
+            
             <div>
-                <label for="category">Category: </label>
-                <input id="category" type="text" formControlName="category" pInputText [(ngModel)]="this.dishService.formData.category">
+                <p-fieldset legend="Category">
+                    <input id="category" type="text" formControlName="category" pInputText [(ngModel)]="this.dishService.formData.category">
+                </p-fieldset>
             </div>
+
             <div>
-                <label for="image">Image URL: </label>
-                <input id="image" type="text" formControlName="imageUrl" pInputText [(ngModel)]="this.dishService.formData.imageUrl">
+                <p-fieldset legend="Image URL">
+                    <input id="image" type="text" formControlName="imageUrl" pInputText [(ngModel)]="this.dishService.formData.imageUrl">
+                </p-fieldset>
             </div>
+
             <div>
-                <label for="description">Dish description: </label>
-                <textarea id="description"
+                <p-fieldset legend="Dish description">
+                    <textarea id="description"
                     formControlName="dishDescription"
                     pInputTextarea
-                    [rows]="5" [cols]="60"
+                    [rows]="5" [cols]="150"
                     [autoResize]="true"
                     [(ngModel)]="this.dishService.formData.dishDescription"></textarea>
+                </p-fieldset>
             </div>
            
-
             <div>
                 <button pButton type="submit" label="Submit"></button>
                 <button pButton type="button" label="Cancel" class="p-button-secondary" (click)="previousState()"></button>

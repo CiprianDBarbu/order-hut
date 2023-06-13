@@ -2,16 +2,13 @@
     <div *ngIf="client">
         <h2><span>Client</span> {{ client.clientId }}</h2>
 
-        <dl class="row-md jh-entity-details">
-            <dt><span>Client Id</span></dt>
-            <dd>
-                <span>{{ client.clientId }}</span>
-            </dd>
-            <dt><span>Name</span></dt>
-            <dd>
-                <span>{{ client.clientName }}</span>
-            </dd>
-        </dl>
+        <p-fieldset legend="Client ID">
+            <span>{{ client.clientId }}</span>
+        </p-fieldset>
+        <p-fieldset legend="Name">
+            <span>{{ client.clientName }}</span>
+        </p-fieldset>
+        
 
         <button pButton type="submit"
                 (click)="back()"

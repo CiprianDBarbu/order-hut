@@ -1,22 +1,25 @@
-<div>
+<div class="col-8">
     <h2 *ngIf="!isAdd">You are now editing Planification {{ this.planificationService.formData.planificationId }}</h2>
     <h2 *ngIf="isAdd">Add new Planification</h2>
 
     <div>
         <form [formGroup]="planificationForm" (ngSubmit)="onSubmit()">
             <div>
-                <label for="waiter-name">Waiter: </label>
-                <p-dropdown [options]="waiters"
+                <p-fieldset legend="Waiter">
+                    <p-dropdown [options]="waiters"
                     optionLabel="fullName"
                     formControlName="waiter"
                     [(ngModel)]="this.planificationService.formData.waiter"></p-dropdown>
+                </p-fieldset>
             </div>
+
             <div>
-                <label for="table">Table: </label>
-                <p-dropdown [options]="tables"
+                <p-fieldset legend="Table">
+                    <p-dropdown [options]="tables"
                     optionLabel="tableId"
                     formControlName="actualTable"
                     [(ngModel)]="this.planificationService.formData.actualTable"></p-dropdown>
+                </p-fieldset>
             </div>
 
             <div>

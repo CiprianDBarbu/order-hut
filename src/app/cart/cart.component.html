@@ -13,13 +13,14 @@
                     <i class="pi pi-clock"></i>
                     <div class="content">
                         <div class="title">Pick an hour</div>
-                        <p-calendar appendTo="body"
+                        <p-calendar
                             formControlName="reservationDate"
                             [(ngModel)]="this.orderService.formData.orderTime"
                             [minDate]="minDate"
                             [maxDate]="maxDate"
                             [readonlyInput]="true"
                             [showTime]="true"
+                            [touchUI]="true"
                             ></p-calendar>
 
                     </div>

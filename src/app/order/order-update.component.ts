@@ -76,6 +76,7 @@ export class OrderUpdateComponent implements OnInit {
 
   previousState() {
     window.history.back();
+    this.orderService.formData = new Order();
   }
 
   onSubmit(): void {

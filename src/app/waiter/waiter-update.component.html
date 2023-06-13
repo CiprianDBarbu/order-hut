@@ -1,13 +1,12 @@
-<div>
+<div class="col-8">
     <h2 *ngIf="!isAdd">You are now editing Waiter {{ this.waiterService.formData.waiterId }}</h2>
     <h2 *ngIf="isAdd">Add new Waiter</h2>
 
     <div>
         <form [formGroup]="waiterForm" (ngSubmit)="onSubmit()">
-            <div>
-                <label for="waiter-name">Name: </label>
+            <p-fieldset legend="Name">
                 <input id="waiter-name" type="text" formControlName="fullName" pInputText [(ngModel)]="this.waiterService.formData.fullName">
-            </div>
+            </p-fieldset>
 
             <div>
                 <button pButton type="submit" label="Submit"></button>

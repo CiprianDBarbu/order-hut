@@ -38,6 +38,9 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar';
 import { ToastModule } from 'primeng/toast';
+import { TooltipModule } from 'primeng/tooltip';
+import { FieldsetModule } from 'primeng/fieldset';
+import { PasswordModule } from 'primeng/password';
 import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -92,6 +95,9 @@ import { GoogleMapsModule } from '@angular/google-maps'
     ToastModule,
     CarouselModule,
     GoogleMapsModule,
+    TooltipModule,
+    FieldsetModule,
+    PasswordModule,
     StoreModule.forRoot(reducers),
   ],
   providers: [ConfirmationService],

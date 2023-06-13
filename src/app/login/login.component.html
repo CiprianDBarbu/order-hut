@@ -1,4 +1,4 @@
-<div>
+<div class="login-form">
     <form [formGroup]="loginForm" (ngSubmit)="login()">
         <div>
             <label for="username">Username: </label>
@@ -6,7 +6,7 @@
         </div>
         <div>
             <label for="password">Password: </label>
-            <input id="password" type="text" formControlName="password" pInputText [(ngModel)]="this.model.password" />
+            <p-password formControlName="password" [feedback]="false"></p-password>
         </div>
         <div>
             <button pButton type="submit" label="Submit"></button>

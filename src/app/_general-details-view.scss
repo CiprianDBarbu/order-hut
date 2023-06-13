@@ -1,0 +1,14 @@
+.col-8 {
+    display: block;
+    max-width: 1200px;
+    margin: auto;
+    padding-top: 40px;
+}
+
+::ng-deep .p-fieldset {
+    margin-bottom: 40px;
+}
+
+button {
+    margin-right: 20px;
+}

@@ -2,20 +2,15 @@
     <div *ngIf="planification">
         <h2><span>Planification</span> {{ planification.planificationId }}</h2>
 
-        <dl class="row-md jh-entity-details">
-            <dt><span>Planification Id</span></dt>
-            <dd>
-                <span>{{ planification.planificationId }}</span>
-            </dd>
-            <dt><span>Name</span></dt>
-            <dd>
-                <span>{{ planification.waiter.fullName }}</span>
-            </dd>
-            <dt><span>Table Id</span></dt>
-            <dd>
-                <span>{{ planification.actualTable.tableId }}</span>
-            </dd>
-        </dl>
+        <p-fieldset legend="Planification ID">
+            <span>{{ planification.planificationId }}</span>
+        </p-fieldset>
+        <p-fieldset legend="Waiter">
+            <span>{{ planification.waiter.fullName }}</span>
+        </p-fieldset>
+        <p-fieldset legend="Table ID">
+            <span>{{ planification.actualTable.tableId }}</span>
+        </p-fieldset>
 
         <button pButton type="submit"
                 (click)="back()"

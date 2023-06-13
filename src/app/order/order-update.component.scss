@@ -1,14 +1,19 @@
 @import "../global-variables.scss";
+@import "src/app/_general-details-view.scss";
 
 .dishes-container {
   display: flex;
   flex-wrap: wrap;
   gap: $gap;
+  margin-top: $gap;
 
   .menu-card {
     flex-basis: calc(50% - $gap / 2);
     display: flex;
     flex-wrap: wrap;
+    border: 1px solid $yellow;
+    border-radius: 5px;
+    padding: calc($gap / 8);
 
     .left-side {
       flex-basis: 90%;
@@ -17,6 +22,8 @@
         display: block;
         float: left;
         max-width: 64px;
+        margin-right: calc($gap / 2);
+        margin-bottom: calc($gap / 2);
       }
     }
 

@@ -1,12 +1,13 @@
-<div>
+<div class="col-8">
     <h2 *ngIf="!isAdd">You are now editing Client {{ this.clientService.formData.clientId }}</h2>
     <h2 *ngIf="isAdd">Add new Client</h2>
 
     <div>
         <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
             <div>
-                <label for="client-name">Name: </label>
-                <input id="client-name" type="text" formControlName="clientName" pInputText [(ngModel)]="this.clientService.formData.clientName">
+                <p-fieldset legend="Name">
+                    <input id="client-name" type="text" formControlName="clientName" pInputText [(ngModel)]="this.clientService.formData.clientName">
+                </p-fieldset>
             </div>
 
             <div>

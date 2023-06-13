@@ -52,6 +52,7 @@ export class PlanificationUpdateComponent implements OnInit {
 
   previousState() {
     window.history.back();
+    this.planificationService.formData = new Planification();
   }
 
   onSubmit(): void {

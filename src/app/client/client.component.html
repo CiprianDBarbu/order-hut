@@ -11,7 +11,10 @@
 
     <div class="listing-container">
         <p-confirmDialog [style]="{width: '50vw'}" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
-        <p-table [value]="clientsList">
+        <p-table [value]="clientsList"
+        [rowHover]="true"
+        [rows]="5"
+        [paginator]="true">
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="clientId">Client Id<p-sortIcon field="clientId"></p-sortIcon></th>
@@ -29,20 +32,20 @@
                                     [routerLink]="['/client', client.clientId, 'view']"
                                     icon="pi pi-eye"
                                     class="p-button-sm"
-                                    label="View">
+                                    pTooltip="View" tooltipPosition="bottom">
                             </button>
         
                             <button pButton type="submit"
                                     [routerLink]="['/client', client.clientId, 'edit']"
                                     icon="pi pi-pencil"
                                     class="p-button-warning p-button-sm"
-                                    label="Edit">
+                                    pTooltip="Edit" tooltipPosition="bottom">
                             </button>
         
                             <button pButton type="submit" (click)="delete(client)"
                                     icon="pi pi-trash"
                                     class="p-button-danger p-button-sm"
-                                    label="Delete">
+                                    pTooltip="Delete" tooltipPosition="bottom">
                             </button>
                         </div>
                     </td>

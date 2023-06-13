@@ -1,0 +1,25 @@
+@import "src/app/global-variables.scss";
+
+.login-form {
+    display: block;
+    max-width: 400px;
+    margin: auto;
+    padding-top: $gap;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: $gap;
+        align-items: center;
+        background: #ffffff;
+        border: 1px solid $yellow;
+        padding: calc($gap / 2);
+
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: calc($gap / 2);
+            min-width: 30%;
+        }
+    }
+}

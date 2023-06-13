@@ -40,6 +40,7 @@ export class WaiterUpdateComponent implements OnInit {
 
   previousState() {
     window.history.back();
+    this.waiterService.formData = new Waiter();
   }
 
   onSubmit(): void {

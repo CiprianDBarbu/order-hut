@@ -2,44 +2,42 @@
     <div *ngIf="order">
         <h2><span>Order</span> {{ order.orderId }}</h2>
 
-        <dl class="row-md jh-entity-details">
-            <dt><span>Order Id</span></dt>
-            <dd>
-                <span>{{ order.orderId }}</span>
-            </dd>
-            <dt><span>Client</span></dt>
-            <dd>
-                <span>{{ order.orderClient.clientName }}</span>
-            </dd>
-            <dt><span>Planification</span></dt>
-            <dd>
-                <span>{{ order.planification.planificationId }}</span>
-            </dd>
-            <dt><span>Table</span></dt>
-            <dd>
-                <span>{{ order.planification.actualTable.tableId }}</span>
-            </dd>
-            <dt><span>Dishes</span></dt>
-            <dd>
-                <span *ngFor="let dish of order.dishList"> {{ dish.dishName }}, </span>
-            </dd>
-            <dt><span>Total price</span></dt>
-            <dd>
-                <span>{{ order.totalPrice }} lei</span>
-            </dd>
-            <dt><span>Order time</span></dt>
-            <dd>
-                <span>{{ order.orderTime | date:'short' }}</span>
-            </dd>
-            <dt><span>Status</span></dt>
-            <dd>
-                <span>{{ order.orderStatus }}</span>
-            </dd>
-            <dt><span>Comments</span></dt>
-            <dd>
-                <span>{{ order.comments }}</span>
-            </dd>
-        </dl>
+        <p-fieldset legend="Order ID" [toggleable]="true">
+            <span>{{ order.orderId }}</span>
+        </p-fieldset>
+
+        <p-fieldset legend="Client" [toggleable]="true">
+            <span>{{ order.orderClient.clientName }}</span>
+        </p-fieldset>
+
+        <p-fieldset legend="Planification" [toggleable]="true">
+            <span>{{ order.planification.planificationId }}</span>
+        </p-fieldset>
+
+        <p-fieldset legend="Table" [toggleable]="true">
+            <span>{{ order.planification.actualTable.tableId }}</span>
+        </p-fieldset>
+
+        <p-fieldset legend="Dishes" [toggleable]="true">
+            <span *ngFor="let dish of order.dishList"> {{ dish.dishName }}, </span>
+        </p-fieldset>
+
+        <p-fieldset legend="Total price" [toggleable]="true">
+            <span>{{ order.totalPrice }}</span>
+        </p-fieldset>
+
+        <p-fieldset legend="Order time" [toggleable]="true">
+            <span>{{ order.orderTime | date:'short' }}</span>
+        </p-fieldset>
+
+        <p-fieldset legend="Status" [toggleable]="true">
+            <span>{{ order.orderStatus }}</span>
+        </p-fieldset>
+
+        <p-fieldset legend="Comments" [toggleable]="true">
+            <span>{{ order.comments }}</span>
+        </p-fieldset>
+
 
         <button pButton type="submit"
                 (click)="back()"

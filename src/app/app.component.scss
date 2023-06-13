@@ -42,6 +42,7 @@
   flex-direction: column;
   justify-content: center;
   gap: calc($gap / 2);
+  margin-top: $gap;
 
   height: 200px;
   background-color: $gray-light;
