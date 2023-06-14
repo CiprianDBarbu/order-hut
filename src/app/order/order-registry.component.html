@@ -1,0 +1,39 @@
+<div class="order-registry">
+    <h2>Orders registry</h2>
+    <div class="orders-lists">
+        <p-panel header="Waiting Orders" class="waiting-list general-column">
+            <div *ngFor="let order of orderListWaiting" class="content">
+                <p-card header="Order {{ order.orderId }}">
+                    <div class="inner-content">
+                        <span>Client: {{ order.orderClient.clientName }}</span>
+                        <span>Waiter: {{ order.planification.waiter.fullName }}</span>
+                    </div>
+                    <i class="pi pi-angle-right" (click)="toInProgress(order)"></i>
+                </p-card>
+            </div>
+        </p-panel>
+        <p-panel header="In Progress Orders" class="progress-list general-column">
+           <div *ngFor="let order of orderListProgress" class="content">
+                <p-card header="Order {{ order.orderId }}">
+                    <i class="pi pi-angle-left" (click)="toWaiting(order)"></i>
+                    <div class="inner-content">
+                        <span>Client: {{ order.orderClient.clientName }}</span>
+                        <span>Waiter: {{ order.planification.waiter.fullName }}</span>
+                    </div>
+                    <i class="pi pi-angle-right" (click)="toDone(order)"></i>
+                </p-card>
+            </div>
+        </p-panel>
+        <p-panel header="Done Orders" class="done-list general-column">
+            <div *ngFor="let order of orderListDone" class="content">
+                <p-card header="Order {{ order.orderId }}">
+                    <i class="pi pi-angle-left" (click)="toProgress(order)"></i>
+                    <div class="inner-content">
+                        <span>Client: {{ order.orderClient.clientName }}</span>
+                        <span>Waiter: {{ order.planification.waiter.fullName }}</span>
+                    </div>
+                </p-card>
+            </div>
+        </p-panel>
+    </div>
+</div>

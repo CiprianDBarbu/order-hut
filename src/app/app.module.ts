@@ -41,6 +41,8 @@ import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
 import { FieldsetModule } from 'primeng/fieldset';
 import { PasswordModule } from 'primeng/password';
+import { CardModule } from 'primeng/card';
+import { PanelModule } from 'primeng/panel';
 import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -48,7 +50,8 @@ import { StoreModule } from '@ngrx/store';
 import { ShoppingReducer } from './store/shopping.reducer';
 import { CartComponent } from './cart/cart.component';
 import { reducers } from './store/app-state';
-import { GoogleMapsModule } from '@angular/google-maps'
+import { GoogleMapsModule } from '@angular/google-maps';
+import { OrderRegistryComponent } from './order/order-registry.component'
 
 @NgModule({
   declarations: [
@@ -74,7 +77,8 @@ import { GoogleMapsModule } from '@angular/google-maps'
     MenuComponent,
     HomeComponent,
     LoginComponent,
-    CartComponent
+    CartComponent,
+    OrderRegistryComponent
   ],
   imports: [
     BrowserModule,
@@ -98,6 +102,8 @@ import { GoogleMapsModule } from '@angular/google-maps'
     TooltipModule,
     FieldsetModule,
     PasswordModule,
+    CardModule,
+    PanelModule,
     StoreModule.forRoot(reducers),
   ],
   providers: [ConfirmationService],

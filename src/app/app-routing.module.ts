@@ -21,6 +21,7 @@ import { TableComponent } from './table/table.component';
 import { WaiterDetailComponent } from './waiter/waiter-detail.component';
 import { WaiterUpdateComponent } from './waiter/waiter-update.component';
 import { WaiterComponent } from './waiter/waiter.component';
+import { OrderRegistryComponent } from './order/order-registry.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'order/:orderId/view', component: OrderDetailComponent },
   { path: 'order/:orderId/edit', component: OrderUpdateComponent },
   { path: 'order/new', component: OrderUpdateComponent },
+  { path: 'order/registry', component: OrderRegistryComponent },
   { path: 'table', component: TableComponent },
   { path: 'table/:tableId/view', component: TableDetailComponent },
   { path: 'table/:tableId/edit', component: TableUpdateComponent },

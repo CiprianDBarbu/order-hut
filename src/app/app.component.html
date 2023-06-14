@@ -9,6 +9,7 @@
         <a *ngIf="isAdmin" routerLink="/table">Tables dashboard</a>
         <a *ngIf="isAdmin" routerLink="/waiter">Waiters dashboard</a>
         <a *ngIf="isAdmin" routerLink="/planification">Planifications dashboard</a>
+        <a routerLink="/order/registry">Orders registry</a>
         <a  routerLink="/menu">Menu</a>
         <p-button  (click)="showDialog()" icon="pi pi-shopping-cart" styleClass="p-button-warning"></p-button>
         <p-dialog header="Your shopping cart" [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false" [style]="{ width: '50vw' }">

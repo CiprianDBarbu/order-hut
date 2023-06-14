@@ -1,0 +1,61 @@
+@import '../global-variables.scss';
+@import "../typography";
+
+.order-registry {
+	display: block;
+	max-width: $sections-width;
+	margin: auto;
+
+	.orders-lists {
+		display: flex;
+		flex-direction: row;
+		margin-top: $gap;
+		gap: $gap;
+
+		.general-column {
+			flex-basis: 33%;
+
+			.content {
+				margin-top: calc($gap / 2);
+
+				.card-body {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					border-top: 1px solid #DEE2E6;
+					border-right: 1px solid #DEE2E6;
+					border-bottom: 1px solid #DEE2E6;
+					border-bottom-right-radius: 6px;
+    				border-bottom-left-radius: 6px;
+				}
+
+				.inner-content {
+					display: flex;
+					flex-direction: column;
+				}
+			}
+		}
+	}
+}
+
+:host ::ng-deep .waiting-list .p-panel-header {
+	background: $light-red;
+}
+
+:host ::ng-deep .progress-list .p-panel-header {
+	background: $light-yellow;
+}
+
+:host ::ng-deep .done-list .p-panel-header {
+	background: $light-green;
+}
+
+:host ::ng-deep .p-card-content {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+:host ::ng-deep p-card {
+	width: 100%;
+}
