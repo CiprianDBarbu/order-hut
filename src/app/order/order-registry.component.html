@@ -4,7 +4,7 @@
         <p-panel header="Waiting Orders" class="waiting-list general-column">
             <div *ngFor="let order of orderListWaiting" class="content">
                 <p-card header="Order {{ order.orderId }}">
-                    <div class="inner-content">
+                    <div class="inner-content" routerLink="/order/{{order.orderId}}/view" pTooltip="Click to edit" tooltipPosition="bottom">
                         <span>Client: {{ order.orderClient.clientName }}</span>
                         <span>Waiter: {{ order.planification.waiter.fullName }}</span>
                     </div>
@@ -16,7 +16,7 @@
            <div *ngFor="let order of orderListProgress" class="content">
                 <p-card header="Order {{ order.orderId }}">
                     <i class="pi pi-angle-left" (click)="toWaiting(order)"></i>
-                    <div class="inner-content">
+                    <div class="inner-content" routerLink="/order/{{order.orderId}}/view" pTooltip="Click to edit" tooltipPosition="bottom">
                         <span>Client: {{ order.orderClient.clientName }}</span>
                         <span>Waiter: {{ order.planification.waiter.fullName }}</span>
                     </div>
@@ -28,7 +28,7 @@
             <div *ngFor="let order of orderListDone" class="content">
                 <p-card header="Order {{ order.orderId }}">
                     <i class="pi pi-angle-left" (click)="toProgress(order)"></i>
-                    <div class="inner-content">
+                    <div class="inner-content" routerLink="/order/{{order.orderId}}/view" pTooltip="Click to edit" tooltipPosition="bottom">
                         <span>Client: {{ order.orderClient.clientName }}</span>
                         <span>Waiter: {{ order.planification.waiter.fullName }}</span>
                     </div>

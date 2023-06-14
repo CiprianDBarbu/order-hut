@@ -32,6 +32,11 @@
 				.inner-content {
 					display: flex;
 					flex-direction: column;
+					cursor: pointer;
+				}
+
+				i {
+					cursor: pointer;
 				}
 			}
 		}

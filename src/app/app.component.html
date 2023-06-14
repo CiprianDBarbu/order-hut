@@ -9,14 +9,15 @@
         <a *ngIf="isAdmin" routerLink="/table">Tables dashboard</a>
         <a *ngIf="isAdmin" routerLink="/waiter">Waiters dashboard</a>
         <a *ngIf="isAdmin" routerLink="/planification">Planifications dashboard</a>
-        <a routerLink="/order/registry">Orders registry</a>
-        <a  routerLink="/menu">Menu</a>
-        <p-button  (click)="showDialog()" icon="pi pi-shopping-cart" styleClass="p-button-warning"></p-button>
+        <a *ngIf="isWaiter" routerLink="/order/registry">Orders registry</a>
+        <a *ngIf="!isWaiter && !isAdmin" routerLink="/menu">Menu</a>
+        <p-button *ngIf="!isWaiter && !isAdmin" (click)="showDialog()" icon="pi pi-shopping-cart" styleClass="p-button-warning"></p-button>
         <p-dialog header="Your shopping cart" [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false" [style]="{ width: '50vw' }">
             <div>
                 <app-cart></app-cart>
             </div>
         </p-dialog>
+        <span *ngIf="isAdmin || isWaiter">Hi {{this.userName}}!</span>
     </div>
 </div>
 <router-outlet></router-outlet>

@@ -1,3 +1,6 @@
+@import "../global-variables.scss";
+@import "../typography";
+
 .banner-container {
     display: flex;
     justify-content: space-between;
@@ -6,5 +9,24 @@
 
     button {
         height: 100%;
+    }
+}
+
+.listing-container {
+    .status span {
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+
+        &.waiting {
+            background-color: $light-red;
+        }
+
+        &.progress {
+            background-color: $light-yellow;
+        }
+
+        &.done {
+            background-color: $light-green;
+        }
     }
 }

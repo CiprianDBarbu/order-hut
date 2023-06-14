@@ -37,7 +37,7 @@
                     <td style="max-width: 300px;"> <span *ngFor="let dish of order.dishList"> {{ dish.dishName }}, </span> </td>
                     <td> {{ order.totalPrice }} lei </td>
                     <td> {{ order.orderTime | date:'short' }} </td>
-                    <td> {{ order.orderStatus }} </td>
+                    <td class="status"><span [ngClass]="{'waiting': order.orderStatus === 'WAITING', 'progress': order.orderStatus === 'IN_PROGRESS', 'done': order.orderStatus === 'DONE'}"> {{ order.orderStatus }} </span></td>
                     <td> {{ order.comments }} </td>
                     <td *ngIf="isAdmin" class="text-right">
                         <div class="p-buttonset">
