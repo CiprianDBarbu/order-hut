@@ -16,6 +16,7 @@ export class WaiterComponent implements OnInit {
 
   ngOnInit(): void {
     this.waiterService.query().subscribe((res) => this.waitersList = res);
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
   }
 
   delete(waiter: Waiter): void {

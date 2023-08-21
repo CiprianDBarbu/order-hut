@@ -10,11 +10,13 @@ import { PlanificationService } from '../shared/services/planification.service';
 })
 export class PlanificationDetailComponent implements OnInit {
   planification!: Planification;
+  isAdmin?: boolean = true;
 
   constructor(protected activatedRouter: ActivatedRoute, protected planificationService: PlanificationService) { }
 
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['planificationId'];
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
 
     this.planificationService.find(id).subscribe((res) => this.planification = res);
   }

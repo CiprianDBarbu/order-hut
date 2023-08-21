@@ -35,6 +35,7 @@ export class OrderUpdateComponent implements OnInit {
   isAdd!: boolean;
   addToOrder: boolean = false;
   actualDishList: Dish[] = new Array<Dish>;
+  isAdmin?: boolean = true;
 
   
   constructor(
@@ -47,6 +48,7 @@ export class OrderUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['orderId'];
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
 
     if(id) {
       this.orderService.find(id).subscribe((res) => this.updateForm(res));

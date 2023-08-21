@@ -26,15 +26,15 @@ export class HomeComponent implements OnInit {
   constructor(private http: HttpClient, private userService: UserService, private dishService: DishService) { }
 
   ngOnInit(): void {
-    const token = sessionStorage.getItem("token")!;
-    // console.log(atob(token.split('.')[1]));
-    console.log(JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString()));
-    this.userName = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString()).username;
-
     this.dishService.query().subscribe((res) => {
       //on the presentation we want only the first 7 elements from the menu
       this.dishList = res.slice(0, 6);
     });
+
+    const token = sessionStorage.getItem("token")!;
+    if(token) {
+      this.userName = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString()).username;
+    }
   }
 
   logout() : void {

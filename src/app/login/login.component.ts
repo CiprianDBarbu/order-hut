@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private fb: FormBuilder, protected userService: UserService) {}
 
   ngOnInit(): void {
-    sessionStorage.setItem('token', '');
+    // sessionStorage.setItem('token', '');
+    sessionStorage.removeItem('token');
   }
 
   login(): void {

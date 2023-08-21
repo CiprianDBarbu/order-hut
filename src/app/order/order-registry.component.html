@@ -1,4 +1,4 @@
-<div class="order-registry">
+<div class="order-registry" *ngIf="isWaiter">
     <h2>Orders registry</h2>
     <div class="orders-lists">
         <p-panel header="Waiting Orders" class="waiting-list general-column">
@@ -36,4 +36,8 @@
             </div>
         </p-panel>
     </div>
+</div>
+<div *ngIf="!isWaiter">
+    <h2>Not authorised!</h2>
+    Go to homepage by clicking <a href="/">here</a>!
 </div>

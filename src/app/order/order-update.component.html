@@ -1,4 +1,4 @@
-<div class="col-8">
+<div class="col-8" *ngIf="isAdmin">
     <h2 *ngIf="!isAdd">You are now editing Order {{ this.orderService.formData.orderId }}</h2>
     <h2 *ngIf="isAdd">Add new Order</h2>
 
@@ -41,7 +41,7 @@
                         </ng-template>
                         <ng-template pTemplate="body" let-dish let-index="rowIndex">
                             <tr>
-                                <td> <img src="{{ dish.imageUrl }}"/></td>
+                                <td> <img src="{{ dish.imageUrl }}" style="max-width: 120px;"/></td>
                                 <td> {{ dish.dishName }} </td>
                                 <td> {{ dish.category }} </td>
                                 <td> {{ dish.price }} lei </td>
@@ -87,4 +87,8 @@
             </div>
         </form>
     </div>
+</div>
+<div *ngIf="!isAdmin">
+    <h2>Not authorised!</h2>
+    Go to homepage by clicking <a href="/">here</a>!
 </div>

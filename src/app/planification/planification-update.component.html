@@ -1,4 +1,4 @@
-<div class="col-8">
+<div class="col-8" *ngIf="isAdmin">
     <h2 *ngIf="!isAdd">You are now editing Planification {{ this.planificationService.formData.planificationId }}</h2>
     <h2 *ngIf="isAdd">Add new Planification</h2>
 
@@ -28,4 +28,8 @@
             </div>
         </form>
     </div>
+</div>
+<div *ngIf="!isAdmin">
+    <h2>Not authorised!</h2>
+    Go to homepage by clicking <a href="/">here</a>!
 </div>

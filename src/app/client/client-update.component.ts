@@ -17,11 +17,13 @@ export class ClientUpdateComponent implements OnInit {
   });
 
   isAdd!: boolean;
+  isAdmin?: boolean = true;
 
   constructor(protected activatedRouter: ActivatedRoute, protected clientService: ClientService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['clientId'];
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
 
     if(id) {
       this.clientService.find(id).subscribe((res) => this.updateForm(res));

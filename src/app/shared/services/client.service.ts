@@ -15,18 +15,20 @@ export class ClientService {
 
   create(): Observable<Client> {
     const JWTToken = sessionStorage.getItem('token')!;
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${JWTToken}`,
-      'Accept-Encoding': 'identity'
-    });
+    let headers = new HttpHeaders();
+    if(JWTToken) {
+      headers = new HttpHeaders({
+        'Authorization': `Bearer ${JWTToken}`,
+        'Accept-Encoding': 'identity'
+      });
+    }
     return this.http.post<Client>(`${this.baseURL}/new`, this.formData, { headers: headers });
   }
 
   update(): Observable<Client> {
     const JWTToken = sessionStorage.getItem('token')!;
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${JWTToken}`,
-      'Accept-Encoding': 'identity'
+      'Authorization': `Bearer ${JWTToken}`
     });
     return this.http.put<Client>(`${this.baseURL}/${this.formData.clientId}`, this.formData, { headers: headers });
   }
@@ -34,8 +36,7 @@ export class ClientService {
   query(): Observable<Client[]> {
     const JWTToken = sessionStorage.getItem('token')!;
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${JWTToken}`,
-      'Accept-Encoding': 'identity'
+      'Authorization': `Bearer ${JWTToken}`
     });
     return this.http.get<Client[]>(`${this.baseURL}/list`, { headers: headers });
   }
@@ -43,8 +44,7 @@ export class ClientService {
   find(id: number): Observable<Client> {
     const JWTToken = sessionStorage.getItem('token')!;
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${JWTToken}`,
-      'Accept-Encoding': 'identity'
+      'Authorization': `Bearer ${JWTToken}`
     });
     return this.http.get<Client>(`${this.baseURL}/${id}`, { headers: headers });
   }
@@ -52,8 +52,7 @@ export class ClientService {
   delete(id: number): Observable<any> {
     const JWTToken = sessionStorage.getItem('token')!;
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${JWTToken}`,
-      'Accept-Encoding': 'identity'
+      'Authorization': `Bearer ${JWTToken}`
     });
     return this.http.delete(`${this.baseURL}/${id}`, { headers: headers });
   } 

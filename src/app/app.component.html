@@ -12,7 +12,7 @@
         <a *ngIf="isWaiter" routerLink="/order/registry">Orders registry</a>
         <a *ngIf="!isWaiter && !isAdmin" routerLink="/menu">Menu</a>
         <p-button *ngIf="!isWaiter && !isAdmin" (click)="showDialog()" icon="pi pi-shopping-cart" styleClass="p-button-warning"></p-button>
-        <p-dialog header="Your shopping cart" [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false" [style]="{ width: '50vw' }">
+        <p-dialog header="Cosul dumneavoastra de cumparaturi" [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false" [style]="{ width: '50vw' }"  [breakpoints]="{ '768px': '95vw' }">
             <div>
                 <app-cart></app-cart>
             </div>

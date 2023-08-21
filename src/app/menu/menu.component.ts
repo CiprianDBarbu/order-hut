@@ -20,10 +20,12 @@ export class MenuComponent implements OnInit {
   menu: Map<string, Dish[]> = new Map<string, Dish[]>();
   isVisible!: boolean;
   selectedDish: Dish = new Dish();
+  isAdmin!: boolean;
 
   constructor(private dishService: DishService, private store: Store<AppState>, private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
     this.dishService.query().subscribe((res) => {
       this.dishList = res;
       this.sections = [...new Set(res.map(el => el.category || ""))].filter(el => el !== "RACORITOARE");

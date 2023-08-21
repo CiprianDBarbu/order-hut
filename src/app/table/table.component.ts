@@ -16,6 +16,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.tableService.query().subscribe((res) => this.tablesList = res);
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
   }
 
   delete(table: Table): any {

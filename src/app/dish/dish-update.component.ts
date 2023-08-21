@@ -20,11 +20,13 @@ export class DishUpdateComponent implements OnInit {
   });
 
   isAdd!: boolean;
+  isAdmin?: boolean = true;
 
   constructor(protected activatedRouter: ActivatedRoute, protected dishService: DishService, private fb: FormBuilder) { }
   
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['dishId'];
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
 
     if(id) {
       this.dishService.find(id).subscribe((res) => this.updateForm(res));

@@ -15,19 +15,25 @@ export class OrderService {
 
   create(): Observable<Order> {
     const JWTToken = sessionStorage.getItem('token')!;
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${JWTToken}`,
-      'Accept-Encoding': 'identity'
-    });
+    let headers = new HttpHeaders();
+    if(JWTToken) {
+      headers = new HttpHeaders({
+        'Authorization': `Bearer ${JWTToken}`,
+        'Accept-Encoding': 'identity'
+      });
+    }
     return this.http.post<Order>(`${this.baseURL}/new`, this.formData, { headers: headers });
   }
 
   update(): Observable<Order> {
     const JWTToken = sessionStorage.getItem('token')!;
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${JWTToken}`,
-      'Accept-Encoding': 'identity'
-    });
+    let headers = new HttpHeaders();
+    if(JWTToken) {
+      headers = new HttpHeaders({
+        'Authorization': `Bearer ${JWTToken}`,
+        'Accept-Encoding': 'identity'
+      });
+    }
     return this.http.put<Order>(`${this.baseURL}/${this.formData.orderId}`, this.formData, { headers: headers });
   }
 
@@ -42,10 +48,13 @@ export class OrderService {
 
   find(id: number): Observable<Order> {
     const JWTToken = sessionStorage.getItem('token')!;
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${JWTToken}`,
-      'Accept-Encoding': 'identity'
-    });
+    let headers = new HttpHeaders();
+    if(JWTToken) {
+      headers = new HttpHeaders({
+        'Authorization': `Bearer ${JWTToken}`,
+        'Accept-Encoding': 'identity'
+      });
+    }
     return this.http.get<Order>(`${this.baseURL}/${id}`, { headers: headers });
   }
 

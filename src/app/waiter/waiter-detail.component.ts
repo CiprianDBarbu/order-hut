@@ -10,11 +10,13 @@ import { WaiterService } from '../shared/services/waiter.service';
 })
 export class WaiterDetailComponent implements OnInit {
   waiter!: Waiter;
+  isAdmin?: boolean = true;
 
   constructor(protected activatedRouter: ActivatedRoute, protected waiterService: WaiterService) { }
 
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['waiterId'];
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
 
     this.waiterService.find(id).subscribe((res) => this.waiter = res);
   }

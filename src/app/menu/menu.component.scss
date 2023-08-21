@@ -65,6 +65,10 @@
 				padding-bottom: calc($gap / 2);
 				border-bottom: 1px solid $yellow-dark;
 
+				@media only screen and (max-width: 768px)  {
+					flex-basis: 100%;
+				}
+
 				.menu-item-inner {
 					display: flex;
 					gap: calc($gap / 2);
@@ -97,6 +101,11 @@
 					}
 				}
 			}
+		}
+
+		@media only screen and (max-width: 768px)  {
+			width: 90%;
+			margin: auto;
 		}
 	}
 

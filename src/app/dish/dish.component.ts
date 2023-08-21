@@ -16,6 +16,7 @@ export class DishComponent implements OnInit {
 
   ngOnInit(): void {
     this.dishService.query().subscribe((res) => this.dishList = res);
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
   }
 
   delete(dish: Dish): void {

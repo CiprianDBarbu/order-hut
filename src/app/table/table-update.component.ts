@@ -18,11 +18,13 @@ export class TableUpdateComponent implements OnInit {
   });
 
   isAdd!: boolean;
+  isAdmin?: boolean = true;
 
   constructor(protected activatedRouter: ActivatedRoute, protected tableService: TableService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['tableId'];
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
 
     if(id) {
       this.tableService.find(id).subscribe((res) => this.updateForm(res));

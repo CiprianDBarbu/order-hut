@@ -43,6 +43,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { PasswordModule } from 'primeng/password';
 import { CardModule } from 'primeng/card';
 import { PanelModule } from 'primeng/panel';
+import { InputSwitchModule } from 'primeng/inputswitch';
 import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -93,6 +94,7 @@ import { OrderRegistryComponent } from './order/order-registry.component'
     InputNumberModule,
     DropdownModule,
     MultiSelectModule,
+    InputSwitchModule,
     DialogModule,
     InputTextareaModule,
     CalendarModule,

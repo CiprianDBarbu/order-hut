@@ -16,6 +16,7 @@ export class PlanificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.planificationService.query().subscribe((res) => this.planificationList = res);
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
   }
 
   delete(planification: Planification): void {

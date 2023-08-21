@@ -1,4 +1,4 @@
-<div class="col-8">
+<div class="col-8" *ngIf="isAdmin">
     <div *ngIf="order">
         <h2><span>Order</span> {{ order.orderId }}</h2>
 
@@ -47,7 +47,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-dish let-index="rowIndex">
                     <tr>
-                        <td> <img src="{{ dish.imageUrl }}"/></td>
+                        <td> <img src="{{ dish.imageUrl }}" style="max-width: 120px;"/></td>
                         <td> {{ dish.dishName }} </td>
                         <td> {{ dish.category }} </td>
                         <td> {{ dish.price }} lei </td>
@@ -78,4 +78,8 @@
                 class="btn btn-primary">
         </button>
     </div>
+</div>
+<div *ngIf="!isAdmin">
+    <h2>Not authorised!</h2>
+    Go to homepage by clicking <a href="/">here</a>!
 </div>

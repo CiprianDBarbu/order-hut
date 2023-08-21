@@ -10,11 +10,13 @@ import { DishService } from '../shared/services/dish.service';
 })
 export class DishDetailComponent implements OnInit {
   dish!: Dish;
+  isAdmin?: boolean = true;
 
   constructor(protected activatedRouter: ActivatedRoute, protected dishService: DishService) { }
 
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['dishId'];
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
 
     this.dishService.find(id).subscribe((res) => this.dish = res);
   }

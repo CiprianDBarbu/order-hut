@@ -17,11 +17,13 @@ export class WaiterUpdateComponent implements OnInit {
   });
 
   isAdd!: boolean;
+  isAdmin?: boolean = true;
 
   constructor(protected activatedRouter: ActivatedRoute, protected waiterService: WaiterService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['waiterId'];
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
 
     if(id) {
       this.waiterService.find(id).subscribe((res) => this.updateForm(res));

@@ -10,11 +10,13 @@ import { ClientService } from '../shared/services/client.service';
 })
 export class ClientDetailComponent implements OnInit {
   client!: Client;
+  isAdmin?: boolean = true;
 
   constructor(protected activatedRouter: ActivatedRoute, protected clientService: ClientService) { }
 
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['clientId'];
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
 
     this.clientService.find(id).subscribe((res) => this.client = res);
   }

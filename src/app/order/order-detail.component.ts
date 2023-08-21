@@ -10,11 +10,14 @@ import { OrderService } from '../shared/services/order.service';
 })
 export class OrderDetailComponent implements OnInit {
   order!: Order;
+  isAdmin?: boolean = true;
+  isWaiter?: boolean = true;
 
   constructor(protected activatedRouter: ActivatedRoute, protected orderService: OrderService) { }
 
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['orderId'];
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
 
     this.orderService.find(id).subscribe((res) => this.order = res);
   }

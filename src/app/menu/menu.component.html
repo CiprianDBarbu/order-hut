@@ -1,10 +1,10 @@
-<div class="page-header">
+<div class="page-header" *ngIf="!isAdmin">
     <div class="header-info">
         <h1>Menu</h1>
         <span>All the food you want and more!</span>
     </div>
 </div>
-<div class="section-container">
+<div class="section-container" *ngIf="!isAdmin">
     <p-toast [style]="{ top: '70px' }"></p-toast>
     <h2 class="title">Order Hut Menu</h2>
     <div class="menu-container">
@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <p-dialog header="{{ selectedDish.dishName }}" [(visible)]="isVisible" [modal]="true" [style]="{ width: '40vw' }" [draggable]="false" [resizable]="false">
+        <p-dialog header="{{ selectedDish.dishName }}" [(visible)]="isVisible" [modal]="true" [style]="{ width: '40vw' }" [breakpoints]="{ '768px': '90vw' }" [draggable]="false" [resizable]="false">
             <div class="m-0">
                 <img src="{{ selectedDish.imageUrl }}" class="item-image" />
                 <div class="description">{{ selectedDish.dishDescription }}</div>
@@ -33,4 +33,8 @@
             </div>
         </p-dialog>
     </div>
+</div>
+<div *ngIf="isAdmin">
+    <h2>Not authorised!</h2>
+    Go to homepage by clicking <a href="/">here</a>!
 </div>

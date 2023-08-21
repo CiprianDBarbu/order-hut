@@ -1,5 +1,30 @@
 <div>
-    <form [formGroup]="cartForm" (ngSubmit)="toCheckout()">
+    <p-card *ngIf="this.showProgressBanner" header="Aveti o comanda in desfasurare!" class="cart-modal existing-order">
+        <div *ngIf="estimatedTime" class="icon-status">
+            <i *ngIf="existingOrder!.orderStatus === 'WAITING'" class="pi pi-spin pi-cog" style="font-size: 5rem"></i>
+            <img *ngIf="existingOrder!.orderStatus === 'IN_PROGRESS'" src="../../assets/icons8-scooter.gif"/>
+        </div>
+        <div *ngIf="estimatedTime && existingOrder!.orderStatus === 'IN_PROGRESS'" class="info">Timp estimat de livrare: {{ this.estimatedTime }} minute</div>
+        <div class="status info">Status: <span [ngClass]="{'waiting': existingOrder!.orderStatus === 'WAITING', 'progress': existingOrder!.orderStatus === 'IN_PROGRESS', 'done': existingOrder!.orderStatus === 'DONE'}"> {{ this.existingOrder!.orderStatus }} </span></div>
+        <div *ngIf ="!estimatedTime" class="info"> Ospatar: {{ this.existingOrder!.planification.waiter.fullName }} </div>
+        <div class="right-side info">
+            <div class="cart-container">
+                <div *ngFor="let item of this.existingOrder!.dishList">
+                    <div class="item-card">
+                        <img src="{{ item.imageUrl }}" class="item-image" />
+                        <div class="item-name"> {{ item.dishName }} </div>
+                        <div class="item-price"> {{ item.price | number : '1.2-2'}} lei</div>
+                    </div>
+                </div>
+            </div>
+            <div class="total-price">
+                <span>Sub-total <br>{{ existingOrderTotal }} RON</span>
+                <span>TVA (9% included)<br> {{ (existingOrderTotal * 9) / 100 }} RON</span>
+                Total<br> {{ existingOrderTotal }} ron
+            </div>
+        </div>
+    </p-card>
+    <form *ngIf="!this.showProgressBanner" [formGroup]="cartForm" (ngSubmit)="toCheckout()">
         <div class="cart-modal">
             <div class="left-side">
                 <div class="section contact">
@@ -8,6 +33,9 @@
                         <div class="title">Conctact</div>
                         <input id="client-name" type="text" class="form-control" formControlName="clientName" required pInputText [(ngModel)]="this.clientService.formData.clientName">
                     </div>
+                </div>
+                <div class="section">
+                    
                 </div>
                 <div class="section hour">
                     <i class="pi pi-clock"></i>
@@ -23,6 +51,20 @@
                             [touchUI]="true"
                             ></p-calendar>
 
+                    </div>
+                </div>
+                <div>
+                    <div class="map">
+                        <google-map height="300px"
+                        width="100%"
+                        [center]="markerPositions[0]"
+                        [zoom]="zoom"
+                        (mapClick)="addMarker($event)"
+                        (mapMousemove)="move($event)">
+                            <map-marker *ngFor="let markerPosition of markerPositions"
+                            [position]="markerPosition"
+                            ></map-marker>
+                        </google-map>
                     </div>
                 </div>
                 <div class="section people">

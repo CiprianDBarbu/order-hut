@@ -1,4 +1,4 @@
-<div class="col-8">
+<div class="col-8" *ngIf="isAdmin">
     <div *ngIf="dish">
         <h2><span>Dish</span> {{ dish.dishId }}</h2>
 
@@ -20,7 +20,7 @@
             </p-fieldset>
 
             <p-fieldset legend="Image" [toggleable]="true">
-                <span><img src="{{ dish.imageUrl }}" /></span>
+                <span><img src="{{ dish.imageUrl }}" style="max-width: 50%;"/></span>
             </p-fieldset>
  
             <p-fieldset legend="Description" [toggleable]="true">
@@ -42,4 +42,8 @@
                 class="btn btn-primary">
         </button>
     </div>
+</div>
+<div *ngIf="!isAdmin">
+    <h2>Not authorised!</h2>
+    Go to homepage by clicking <a href="/">here</a>!
 </div>

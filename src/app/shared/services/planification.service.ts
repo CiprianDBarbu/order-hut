@@ -33,10 +33,13 @@ export class PlanificationService {
 
   query(): Observable<Planification[]> {
     const JWTToken = sessionStorage.getItem('token')!;
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${JWTToken}`,
-      'Accept-Encoding': 'identity'
-    });
+    let headers = new HttpHeaders();
+    if(JWTToken) {
+      headers = new HttpHeaders({
+        'Authorization': `Bearer ${JWTToken}`,
+        'Accept-Encoding': 'identity'
+      });
+    }
     return this.http.get<Planification[]>(`${this.baseURL}/list`, { headers: headers });
   }
 

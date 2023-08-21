@@ -16,6 +16,7 @@ export class OrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.orderService.query().subscribe((res) => this.ordersList = res);
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
   }
 
   delete(order: Order): void {

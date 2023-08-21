@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="isAdmin">
     <div class="banner-container">
         <h2>Table listing</h2>
         <button pButton
@@ -55,4 +55,8 @@
             </ng-template>
         </p-table>
     </div>
+</div>
+<div *ngIf="!isAdmin">
+    <h2>Not authorised!</h2>
+    Go to homepage by clicking <a href="/">here</a>!
 </div>

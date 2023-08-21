@@ -17,6 +17,8 @@ export class OrderRegistryComponent implements OnInit {
   constructor(private orderService: OrderService) { }
 
   ngOnInit(): void {
+    this.isWaiter = sessionStorage.getItem("token") === null ? false : true;
+
     this.orderService.query().subscribe((res) => {
       this.orderListWaiting = res.filter(el => el.orderStatus === OrderStatus.WAITING);
       this.orderListProgress = res.filter(el => el.orderStatus === OrderStatus.IN_PROGRESS);

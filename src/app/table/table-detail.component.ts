@@ -10,11 +10,13 @@ import { TableService } from '../shared/services/table.service';
 })
 export class TableDetailComponent implements OnInit {
   table!: Table;
+  isAdmin?: boolean = true;
 
   constructor(protected activatedRouter: ActivatedRoute, protected tableService: TableService) { }
 
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['tableId'];
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
 
     this.tableService.find(id).subscribe((res) => this.table = res);
   }

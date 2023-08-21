@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Dish } from '../shared/models/dish.model';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { AppState } from '../store/app-state';
 import { Store } from '@ngrx/store';
 import { OrderService } from '../shared/services/order.service';
@@ -21,13 +21,26 @@ import { PlanificationService } from '../shared/services/planification.service';
 export class CartComponent implements OnInit {
   shoppingItems!: Observable<Dish[]>;
   items!: Dish[];
-  order!: Order; 
+  order: Order = new Order();
+  existingOrder: Order = new Order();
+  existingOrderTotal!: number;
+  showProgressBanner: boolean = false;
   cartSubtotal!: number;
   isOrderCreated = false;
   client!: Client;
   minDate!: Date;
   maxDate!: Date;
   planifications!: Planification[];
+  estimatedTime?: number;
+
+  display: any;
+  markerPositions: google.maps.LatLngLiteral[] = [{
+    lat: 44.411723,
+    lng: 26.113901
+  }];
+  zoom = 13;
+
+  checked!: boolean;
 
   cartForm = this.fb.group({
     clientName: ['', Validators.required],
@@ -41,15 +54,29 @@ export class CartComponent implements OnInit {
               protected orderService: OrderService,
               protected clientService: ClientService,
               protected planificationService: PlanificationService,
-              private fb: FormBuilder
+              private fb: FormBuilder,
             ) { }
 
   ngOnInit(): void {
     this.shoppingItems = this.store.select(el => el.shopping);
-    console.log("InitCart" ,this.shoppingItems);
     this.calculateSubtotal();
     this.initCalendar();
     this.initPlanifications();
+
+    if(sessionStorage.getItem("order")) {
+      this.showProgressBanner = true;
+      this.orderService.find(Number(sessionStorage.getItem("order"))).subscribe((res) => {
+        console.log(res);
+        this.existingOrder = res;
+        this.existingOrderTotal = res.dishList.reduce((accumulator, currentValue) => accumulator + currentValue.price!, 0)
+        if(this.existingOrder.orderStatus === OrderStatus.DONE) {
+          sessionStorage.removeItem("order");
+          this.showProgressBanner = false;
+        }
+      });
+    } else {
+      this.showProgressBanner = false;
+    }
   }
 
   removeItemFromCart(id: any): void {
@@ -80,6 +107,8 @@ export class CartComponent implements OnInit {
 
       this.orderService.create().subscribe((res) => {
         this.order = res;
+        sessionStorage.setItem("order", this.order.orderId!.toString());
+        this.existingOrder = res;
       },
       (err) => { },
       () => {
@@ -103,5 +132,28 @@ export class CartComponent implements OnInit {
 
   initPlanifications(): void {
     this.planificationService.query().subscribe((res) => { this.planifications = res; });
+  }
+
+  addMarker(event: google.maps.MapMouseEvent) {
+    if(this.markerPositions.length > 1) {
+      this.markerPositions.pop();
+    }
+    this.markerPositions.push(event.latLng!.toJSON());
+    console.log(google.maps.geometry.spherical.computeDistanceBetween(this.markerPositions[0], this.markerPositions[1]));
+    let orderDistance = google.maps.geometry.spherical.computeDistanceBetween(this.markerPositions[0], this.markerPositions[1]);
+    if(orderDistance < 1000) {
+      sessionStorage.setItem("etod", "15");
+      this.estimatedTime = 15;
+    } else if(orderDistance >= 1000 && orderDistance <= 2000) {
+      sessionStorage.setItem("etod", "30");
+      this.estimatedTime = 30;
+    } else {
+      sessionStorage.setItem("etod", "45");
+      this.estimatedTime = 45;
+    }
+  }
+
+  move(event: google.maps.MapMouseEvent) {
+    if (event.latLng != null) this.display = event.latLng.toJSON();
   }
 }

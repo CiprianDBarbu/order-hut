@@ -24,12 +24,14 @@ export class PlanificationUpdateComponent implements OnInit {
   waiters!: Waiter[];
   tables!: Table[];
   isAdd!: boolean;
+  isAdmin?: boolean = true;
 
 
   constructor(protected activatedRouter: ActivatedRoute, protected planificationService: PlanificationService, protected waiterService: WaiterService, protected tableService: TableService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['planificationId'];
+    this.isAdmin = sessionStorage.getItem("token") === null ? false : true;
 
     if(id) {
       this.planificationService.find(id).subscribe((res) => this.updateForm(res));
